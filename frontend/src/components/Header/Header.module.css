@@ -1,0 +1,26 @@
+.container {
+  padding: 30px 120px;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container h4 {
+  color: #ffffff;
+  text-transform: uppercase;
+  flex: 1 1 auto;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+.container p {
+  text-transform: uppercase;
+  color: #ffffff9a;
+  cursor: pointer;
+  font-size: 14px;
+}
+.container p:last-child {
+  margin-left: 30px;
+}
+.container p:hover {
+  color: #ffffff;
+}

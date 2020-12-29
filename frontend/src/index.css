@@ -3,4 +3,10 @@
   padding: 0px;
 }
 
-body {}
+:root {
+  --primary-color: #323232;
+}
+
+body {
+  font-family: sans-serif;
+}

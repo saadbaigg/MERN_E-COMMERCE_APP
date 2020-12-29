@@ -1,12 +1,15 @@
-import React from 'react'
+import React from "react";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
-    <div>
-      Hello World!
-      Whats the deal?
-    </div>
-  )
-}
+    <>
+      <Header />
+      <main>Hello World!</main>
+      <Footer />
+    </>
+  );
+};
 
-export default App
+export default App;
