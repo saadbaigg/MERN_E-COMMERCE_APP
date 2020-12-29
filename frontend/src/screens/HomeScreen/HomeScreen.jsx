@@ -8,7 +8,7 @@ const HomeScreen = () => {
     <div className={styles.container}>
       <h1>Latest Products</h1>
       <div className={styles.productsContainer}>
-        {products.map((item) => {
+        {products.map((item) => (
           <Product
             key={item._id}
             img={item.image}
@@ -16,8 +16,8 @@ const HomeScreen = () => {
             rating={item.rating}
             numReviews={item.numReviews}
             price={item.price}
-          />;
-        })}
+          />
+        ))}
       </div>
     </div>
   );
