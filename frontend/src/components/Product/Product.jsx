@@ -1,16 +1,15 @@
 import React from "react";
 import Rating from "../Rating/Rating";
+import { Link } from 'react-router-dom'
 import styles from "./Product.module.css";
 
-const Product = ({ key, img, name, rating, numReviews, price }) => {
+const Product = ({ id, img, name, rating, numReviews, price }) => {
   return (
-    <div className={styles.card} key={key}>
+    <div className={styles.card} key={id}>
       <img src={img} alt={name} />
       <div className={styles.cardBody}>
-        <p>{name}</p>
-        <p>
-          <Rating value={rating} text={`${numReviews} reviews`} />
-        </p>
+        <Link to={`/product/${id}`}><p>{name}</p></Link>
+        <Rating value={rating} text={`${numReviews} reviews`} />
         <h2>${price}</h2>
       </div>
     </div>

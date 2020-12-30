@@ -20,6 +20,10 @@ body {}
 h1,h2,h3,h4,h5,h6 {
   font-family: heavy;
 }
-p,button,input,li,a {
+p,button,input,li,a,span {
   font-family: light;
+}
+a {
+  text-decoration: none;
+  color: unset;
 }

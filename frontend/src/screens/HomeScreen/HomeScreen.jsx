@@ -10,7 +10,7 @@ const HomeScreen = () => {
       <div className={styles.productsContainer}>
         {products.map((item) => (
           <Product
-            key={item._id}
+            id={item._id}
             img={item.image}
             name={item.name}
             rating={item.rating}

@@ -13,7 +13,10 @@
     margin-left: 10px;
     color: var(--primary-color);
 }
-.cardBody>p {
+.cardBody a:hover {
+    text-decoration: underline;
+}
+.cardBody p {
     margin: 10px 0px;
 }
 .cardBody>h2 {
