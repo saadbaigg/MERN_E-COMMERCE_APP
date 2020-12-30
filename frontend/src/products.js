@@ -24,7 +24,7 @@ export const products = [
         numReviews: 3,
     },
     {
-        _id: 3,
+        _id: '3',
         name: 'Playstation',
         image: '/assets/playstation.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
