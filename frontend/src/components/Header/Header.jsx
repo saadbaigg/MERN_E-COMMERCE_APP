@@ -4,7 +4,7 @@ import styles from './Header.module.css'
 const Header = () => {
     return (
         <header className={styles.container}> 
-            <h4>baigbash</h4>
+            <h4>eSHOP</h4>
             <p>cart</p>
             <p>sign in</p>
         </header>

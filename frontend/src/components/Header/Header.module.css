@@ -7,7 +7,6 @@
 }
 .container h4 {
   color: #ffffff;
-  text-transform: uppercase;
   flex: 1 1 auto;
   cursor: pointer;
   letter-spacing: 2px;
