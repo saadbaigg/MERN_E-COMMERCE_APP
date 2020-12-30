@@ -1,13 +1,20 @@
-import React from "react";
-import { products } from "../../products";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
+import axios from "axios";
 import styles from "./ProductScreen.module.css";
 
 const ProductScreen = ({ match }) => {
-  const product = products.find(
-    (p) => parseInt(p._id) === parseInt(match.params.id)
-  );
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    const fetchedData = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(data);
+    };
+    fetchedData();
+  }, []);
+
   const {
     name,
     image,
@@ -39,9 +46,17 @@ const ProductScreen = ({ match }) => {
           <p className={styles.description}>{description}</p>
         </div>
         <div className={styles.finalContainer}>
-          <span><p>Price:</p><p>${price}</p></span>
-          <span><p>Status:</p><p>{countInStock > 0 ? "In Stock" : "Out of Stock"}</p></span>
-          <span><button disabled={countInStock > 0}>Add to cart</button></span>
+          <span>
+            <p>Price:</p>
+            <p>${price}</p>
+          </span>
+          <span>
+            <p>Status:</p>
+            <p>{countInStock > 0 ? "In Stock" : "Out of Stock"}</p>
+          </span>
+          <span>
+            <button disabled={countInStock > 0}>Add to cart</button>
+          </span>
         </div>
       </div>
     </div>
