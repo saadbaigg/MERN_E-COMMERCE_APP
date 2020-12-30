@@ -2,7 +2,7 @@ const products = [
     {
         _id: 1,
         name: 'iPhone X',
-        image: '/assets/iphone.jpg',
+        image: '/assets/phone.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
         brand: 'Apple',
         category: 'Electronics',
@@ -13,8 +13,8 @@ const products = [
     },
     {
         _id: 2,
-        name: 'Camera Lens',
-        image: '/assets/lens.jpg',
+        name: 'Airpods',
+        image: '/assets/airpods.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
         brand: 'Apple',
         category: 'Electronics',
@@ -37,8 +37,8 @@ const products = [
     },
     {
         _id: 4,
-        name: 'Keyboard',
-        image: '/assets/keyboard.jpg',
+        name: 'Camera',
+        image: '/assets/camera.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
         brand: 'Apple',
         category: 'Electronics',
@@ -61,8 +61,8 @@ const products = [
     },
     {
         _id: 6,
-        name: 'Headphones',
-        image: '/assets/headphones.jpg',
+        name: 'Alexa',
+        image: '/assets/alexa.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
         brand: 'Apple',
         category: 'Electronics',
