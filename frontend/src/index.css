@@ -3,10 +3,23 @@
   padding: 0px;
 }
 
+@font-face {
+  font-family: light;
+  src: url(./fonts/HelveticaNeue\ Light.ttf);
+}
+@font-face {
+  font-family: heavy;
+  src: url(./fonts/Helvetica\ Neu\ Bold.ttf);
+}
 :root {
   --primary-color: #323232;
 }
 
-body {
-  font-family: sans-serif;
+body {}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: heavy;
+}
+p,button,input,li,a {
+  font-family: light;
 }
