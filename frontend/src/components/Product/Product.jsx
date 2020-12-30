@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "../Rating/Rating";
 import styles from "./Product.module.css";
 
 const Product = ({ key, img, name, rating, numReviews, price }) => {
@@ -8,7 +9,7 @@ const Product = ({ key, img, name, rating, numReviews, price }) => {
       <div className={styles.cardBody}>
         <p>{name}</p>
         <p>
-          {rating} from {numReviews} reviews
+          <Rating value={rating} text={`${numReviews} reviews`} />
         </p>
         <h2>${price}</h2>
       </div>
