@@ -1,6 +1,5 @@
 const products = [
     {
-        _id: 1,
         name: 'iPhone X',
         image: '/assets/phone.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
@@ -12,7 +11,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: 2,
         name: 'Airpods',
         image: '/assets/airpods.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
@@ -24,7 +22,6 @@ const products = [
         numReviews: 3,
     },
     {
-        _id: 3,
         name: 'Playstation',
         image: '/assets/playstation.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
@@ -36,7 +33,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: 4,
         name: 'Camera',
         image: '/assets/camera.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
@@ -48,7 +44,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: 5,
         name: 'Mouse',
         image: '/assets/mouse.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
@@ -60,7 +55,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: 6,
         name: 'Alexa',
         image: '/assets/alexa.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae arcu tortor. Sed vel sem odio. Maecenas est ligula, tristique eu molestie gravida, facilisis in diam. Fusce consectetur urna urna. Pellentesque eleifend ante non blandit malesuada.',
