@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/Loader/Loader";
 import Product from "../../components/Product/Product";
 import { listProducts } from "../../redux/actions/productActions";
 import styles from "./HomeScreen.module.css";
@@ -19,7 +20,7 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       <div className={styles.productsContainer}>
         {loading ? (
-          <h2>Loading...</h2>
+          <Loader />
         ) : error ? (
           <h2>some error</h2>
         ) : (
