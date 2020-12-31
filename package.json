@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/7-baig/MERN_E-COMMERCE_APP#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.9"
