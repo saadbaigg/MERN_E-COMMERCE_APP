@@ -26,6 +26,13 @@ const ProductScreen = ({ match }) => {
     numReviews,
     countInStock,
   } = product;
+
+  var arr = [];
+  let i;
+  for (i = 0; i < countInStock; i++) {
+    arr.push(i + 1);
+  }
+
   return (
     <div className={styles.container}>
       <Link to="/">
@@ -60,6 +67,11 @@ const ProductScreen = ({ match }) => {
               <p>Status:</p>
               <p>{countInStock > 0 ? "In Stock" : "Out of Stock"}</p>
             </span>
+            <select>
+              {arr.map((i) => (
+                <option value={i}>{i}</option>
+              ))}
+            </select>
             <span>
               <button disabled={countInStock > 0}>Add to cart</button>
             </span>
