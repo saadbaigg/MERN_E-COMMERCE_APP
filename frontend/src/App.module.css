@@ -1,4 +1,5 @@
 .main {
     padding: 0px 220px;
-    /* min-height: 100vh; */
+    min-height: 100vh;
+    height: 100%;
 }

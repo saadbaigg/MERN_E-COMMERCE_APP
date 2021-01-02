@@ -20,7 +20,9 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       <div className={styles.productsContainer}>
         {loading ? (
-          <Loader />
+          <div className={styles.loaderContainer}>
+            <Loader />
+          </div>
         ) : error ? (
           <h2>some error</h2>
         ) : (
