@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
+import Message from "../../components/Message/Message";
 import Product from "../../components/Product/Product";
 import { listProducts } from "../../redux/actions/productActions";
 import styles from "./HomeScreen.module.css";
@@ -24,7 +25,7 @@ const HomeScreen = () => {
             <Loader />
           </div>
         ) : error ? (
-          <h2>some error</h2>
+          <Message text='some error' />
         ) : (
           products.map((item) => (
             <Product

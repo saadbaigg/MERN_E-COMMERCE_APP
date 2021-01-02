@@ -4,16 +4,14 @@
     min-height: 100vh;
 }
 .container h1 {
-    margin: 20px 0px;
+    margin: 20px -10px;
 }
 .productsContainer {
     display: flex;
     flex-wrap: wrap;
     margin: -10px -10px;
-    min-height: 100vh;
 }
 .loaderContainer {
-    min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
