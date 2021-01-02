@@ -1,6 +1,7 @@
-import React from 'react'
-import spinner from '../../assets/spinner.jpg'
+import React from "react";
+import spinner from "../../assets/loader.png";
+import styles from './Loader.module.css'
 
-const Loader = () => <img src={spinner} alt="loader" />
+const Loader = () => <img className={styles.loader} src={spinner} alt="loader" />
 
-export default Loader
+export default Loader;
