@@ -2,6 +2,7 @@ import React from "react";
 import Rating from "../Rating/Rating";
 import { Link } from 'react-router-dom'
 import styles from "./Product.module.css";
+import imgg from '../../assets/phone.jpg'
 
 const Product = ({ id, img, name, rating, numReviews, price }) => {
   return (
