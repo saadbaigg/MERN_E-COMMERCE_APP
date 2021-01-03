@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/actions/cartActions";
+import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import styles from "./CartItem.module.css";
 
 const CartItem = ({ img, name, id, price, qty, countInStock }) => {
@@ -10,6 +10,10 @@ const CartItem = ({ img, name, id, price, qty, countInStock }) => {
   let i;
   for (i = 0; i < countInStock; i++) {
     arr.push(i + 1);
+  }
+
+  const removeItem = () => {
+    dispatch(removeFromCart(id))
   }
 
   return (
@@ -29,7 +33,7 @@ const CartItem = ({ img, name, id, price, qty, countInStock }) => {
           </select>
         </span>
       )}
-      <button>
+      <button onClick={removeItem} >
         <i className="fas fa-trash"></i>
       </button>
     </div>
