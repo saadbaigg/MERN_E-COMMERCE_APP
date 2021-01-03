@@ -7,7 +7,8 @@ import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./ProductScreen.module.css";
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -31,6 +32,10 @@ const ProductScreen = ({ match }) => {
   let i;
   for (i = 0; i < countInStock; i++) {
     arr.push(i + 1);
+  }
+
+  const handleCartSubmitHandler = e => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
   }
 
   return (
@@ -67,13 +72,20 @@ const ProductScreen = ({ match }) => {
               <p>Status:</p>
               <p>{countInStock > 0 ? "In Stock" : "Out of Stock"}</p>
             </span>
-            <select>
-              {arr.map((i) => (
-                <option value={i}>{i}</option>
-              ))}
-            </select>
+            {countInStock > 0 && (
+              <span>
+                <p>Qty</p>
+                <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                  {arr.map((i) => (
+                    <option value={i}>{i}</option>
+                  ))}
+                </select>
+              </span>
+            )}
             <span>
-              <button disabled={countInStock > 0}>Add to cart</button>
+              <button 
+              onClick={handleCartSubmitHandler}
+              disabled={countInStock <= 0}>Add to cart</button>
             </span>
           </div>
         </div>
