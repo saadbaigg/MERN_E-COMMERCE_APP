@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
 import styles from "./CartItem.module.css";
 
 const CartItem = ({ img, name, id, price, qty, countInStock }) => {
-  const [_qty, setQty] = useState(1);
+  const dispatch = useDispatch();
 
   var arr = [];
   let i;
@@ -17,7 +19,10 @@ const CartItem = ({ img, name, id, price, qty, countInStock }) => {
       <p>{price}</p>
       {countInStock > 0 && (
         <span>
-          <select value={_qty} onChange={(e) => setQty(e.target.value)}>
+          <select
+            value={qty}
+            onChange={(e) => dispatch(addToCart(id, Number(e.target.value)))}
+          >
             {arr.map((i) => (
               <option value={i}>{i}</option>
             ))}
