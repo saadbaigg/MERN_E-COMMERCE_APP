@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    align-items: start;
+    margin: 20px 0px;
+}
+.container>img {
+    width: 100px;
+    margin-right: 20px;
+}
+.container p:nth-child(2) {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 50px;
+}
+.container p:nth-child(3) {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 50px;
+}
+.container>span>select {
+    border: 1px solid #32323273;
+    padding: 8px 16px;
+    margin-right: 20px;
+}
+.container>button {
+    background: #32323250;
+    border: none;
+    padding: 10px 20px;
+}

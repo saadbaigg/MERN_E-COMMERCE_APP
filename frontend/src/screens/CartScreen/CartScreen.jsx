@@ -1,27 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../../redux/actions/cartActions'
-import styles from './CartScreen.module.css'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
+import CartItem from "../../components/CartItem/CartItem";
+import styles from "./CartScreen.module.css";
+import Message from "../../components/Message/Message";
 
 const CartScreen = ({ match, location, history }) => {
+  const productId = match.params.id;
 
-    const productId = match.params.id
+  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
 
-    const qty = location.search ? Number(location.search.split("=")[1]) : 1
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
-    useEffect(() => {
-        if (productId) {
-            dispatch(addToCart(productId, qty))
-        }
-    }, [dispatch, productId, qty])
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  }, [dispatch, productId, qty]);
 
-    return (
-        <div>
-            Hello cart
+  return (
+    <div className={styles.container}>
+      <div className={styles.leftSection}>
+        <h1>Shopping Cart</h1>
+        <div className={styles.itemsContainer}>
+          {cartItems.length === 0 ? (
+            <Message text="You cart is empty" />
+          ) : (
+            cartItems.map((item) => (
+              <CartItem
+                id={item.product}
+                img={item.image}
+                name={item.name}
+                price={item.price}
+                qty={item.qty}
+                countInStock={item.countInStock}
+              />
+            ))
+          )}
         </div>
-    )
-}
+      </div>
+      <div className={styles.rightSection}></div>
+    </div>
+  );
+};
 
-export default CartScreen
+export default CartScreen;
