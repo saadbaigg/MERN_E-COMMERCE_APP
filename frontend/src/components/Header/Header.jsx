@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <header className={styles.container}> 
             <Link to="/"><h4>eSHOP</h4></Link>
-            <Link to="/cart/:id?"><p>cart</p></Link>
+            <Link to="/cart"><p>cart</p></Link>
             <Link to="/signin"><p>sign in</p></Link>
         </header>
     )
