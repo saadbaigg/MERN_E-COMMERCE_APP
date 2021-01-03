@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
 const Header = () => {
     return (
         <header className={styles.container}> 
-            <h4>eSHOP</h4>
-            <p>cart</p>
-            <p>sign in</p>
+            <Link to="/"><h4>eSHOP</h4></Link>
+            <Link to="/cart/:id?"><p>cart</p></Link>
+            <Link to="/signin"><p>sign in</p></Link>
         </header>
     )
 }

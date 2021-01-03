@@ -5,9 +5,11 @@
   align-items: center;
   justify-content: space-between;
 }
+.container>a:nth-child(1) {
+  flex: 1 1 auto;
+}
 .container h4 {
   color: #ffffff;
-  flex: 1 1 auto;
   cursor: pointer;
   letter-spacing: 2px;
 }
