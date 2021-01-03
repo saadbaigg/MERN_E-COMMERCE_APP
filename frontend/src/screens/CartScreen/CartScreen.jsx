@@ -30,19 +30,34 @@ const CartScreen = ({ match, location, history }) => {
             <Message text="You cart is empty" />
           ) : (
             cartItems.map((item) => (
-              <CartItem
-                id={item.product}
-                img={item.image}
-                name={item.name}
-                price={item.price}
-                qty={item.qty}
-                countInStock={item.countInStock}
-              />
+              <>
+                <CartItem
+                  id={item.product}
+                  img={item.image}
+                  name={item.name}
+                  price={item.price}
+                  qty={item.qty}
+                  countInStock={item.countInStock}
+                />
+                <hr />
+              </>
             ))
           )}
         </div>
       </div>
-      <div className={styles.rightSection}></div>
+      <div className={styles.rightSection}>
+        <div className={styles.checkout}>
+          <span>
+            <h2>subtotal (3) items</h2>
+          </span>
+          <span>
+            <p>$567.87</p>
+          </span>
+          <span>
+            <button>proceed to checkout</button>
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
