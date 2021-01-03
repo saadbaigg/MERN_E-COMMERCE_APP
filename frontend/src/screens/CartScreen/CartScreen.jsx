@@ -48,10 +48,17 @@ const CartScreen = ({ match, location, history }) => {
       <div className={styles.rightSection}>
         <div className={styles.checkout}>
           <span>
-            <h2>subtotal (3) items</h2>
+            <h2>
+              subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+              items
+            </h2>
           </span>
           <span>
-            <p>$567.87</p>
+            <p>
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
+            </p>
           </span>
           <span>
             <button>proceed to checkout</button>

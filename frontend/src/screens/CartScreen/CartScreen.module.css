@@ -7,7 +7,7 @@
     color: var(--primary-color);
 }
 .leftSection {
-    width: 70%;
+    width: 67%;
 }
 .itemsContainer {
     width: 90%;
@@ -16,7 +16,7 @@
     border: 1px solid #32323223;
 }
 .rightSection {
-    width: 30%;
+    width: 32%;
 }
 .checkout {
     border: 1px solid rgba(0, 0, 0, 0.192);
@@ -34,6 +34,8 @@
     color: var(--primary-color);
 }
 .checkout>span>p {
+    font-weight: bold;
+    color: var(--primary-color);
 }
 .checkout>span:nth-child(2) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.192);
