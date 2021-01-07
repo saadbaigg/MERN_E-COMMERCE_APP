@@ -4,7 +4,8 @@ import Footer from "./components/Footer/Footer";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import CartScreen from "./screens/CartScreen/CartScreen";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
     <Router>
       <Header />
       <main className={styles.main}>
+        <Route path="/login" component={LoginScreen} />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
