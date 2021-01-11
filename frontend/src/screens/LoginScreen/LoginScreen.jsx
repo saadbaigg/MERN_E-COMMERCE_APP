@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
+import Loader from "../../components/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/actions/userActions";
 import styles from "./LoginScreen.module.css";
 
-const LoginScreen = () => {
+const LoginScreen = ({ history }) => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, loading, error } = userLogin;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+  };
+  console.log(userInfo, error);
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h1>Sign in</h1>
-        <Message text="Invalid email or password" />
+        {error ? <Message text={error} /> : null}
+        {loading ? <Loader /> : null}
         <form>
           <div className={styles.field}>
             <label>Email Address</label>
@@ -34,7 +54,7 @@ const LoginScreen = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button>Sign in</button>
+          <button onClick={handleSubmit}>Sign in</button>
           <span>
             Don't have an account? <Link to="/register">Register</Link>
           </span>

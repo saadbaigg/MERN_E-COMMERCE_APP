@@ -5,7 +5,7 @@ import {
   USER_LOGIN_FAIL,
 } from "../types/userTypes"
 
-export const login = (email, password) => (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST })
 
@@ -21,7 +21,7 @@ export const login = (email, password) => (dispatch) => {
 
     localStorage.setItem('userInfo', data)
   } catch (err) {
-    dispatch({ type: USER_LOGIN_FAIL, payload: error.message });
+    dispatch({ type: USER_LOGIN_FAIL, payload: err.message });
   }
 
 }
