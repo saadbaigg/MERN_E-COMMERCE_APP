@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/actions/userActions";
 import styles from "./Header.module.css";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
 
@@ -24,7 +26,7 @@ const Header = () => {
           <p>sign in</p>
         </Link>
       )}
-      {userInfo ? <p>Logout</p> : null}
+      {userInfo ? <p onClick={() => dispatch(logout())}>Logout</p> : null}
     </header>
   );
 };
