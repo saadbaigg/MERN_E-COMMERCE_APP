@@ -25,7 +25,6 @@ const LoginScreen = ({ history }) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
-  console.log(userInfo, error);
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
