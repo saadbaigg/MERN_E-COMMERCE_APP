@@ -39,6 +39,7 @@ const ShippingScreen = ({ history }) => {
               value={address}
               placeholder="Enter Address"
               autoComplete="off"
+              required
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
@@ -50,6 +51,7 @@ const ShippingScreen = ({ history }) => {
               value={city}
               placeholder="Enter City"
               autoComplete="off"
+              required
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
@@ -60,6 +62,7 @@ const ShippingScreen = ({ history }) => {
               name="postal"
               value={postal}
               placeholder="Enter Postal"
+              required
               onChange={(e) => setPostal(e.target.value)}
             />
           </div>
@@ -70,6 +73,7 @@ const ShippingScreen = ({ history }) => {
               name="country"
               value={country}
               placeholder="Enter country"
+              required
               onChange={(e) => setCountry(e.target.value)}
             />
           </div>

@@ -1,0 +1,9 @@
+.container {
+    border: 1px solid black;
+    display: flex;
+    place-content: center;
+}
+
+.active {}
+
+.disabled {}
