@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../redux/actions/userActions";
+import { saveShipping } from "../../redux/actions/cartActions";
 import styles from "./ShippingScreen.module.css";
 
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo, loading, error } = userLogin;
+  const cart = useSelector((state) => state.cart);
+  const { shipping } = cart;
 
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postal, setPostal] = useState("");
-  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState(shipping.address);
+  const [city, setCity] = useState(shipping.city);
+  const [postal, setPostal] = useState(shipping.postal);
+  const [country, setCountry] = useState(shipping.country);
 
-  useEffect(() => {
-  }, [history, userInfo]);
+  // useEffect(() => {
+  // }, [history, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(saveShipping({ address, city, postal, country }))
+    history.push('/payment')
   };
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h1>Shipping</h1>
-        {error ? <Message text={error} /> : null}
-        {loading ? <Loader /> : null}
+        {/* {error ? <Message text={error} /> : null} */}
+        {/* {loading ? <Loader /> : null} */}
         <form>
         <div className={styles.field}>
             <label>Address</label>
