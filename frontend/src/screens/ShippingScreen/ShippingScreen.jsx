@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Message from "../../components/Message/Message";
-import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShipping } from "../../redux/actions/cartActions";
 import styles from "./ShippingScreen.module.css";
@@ -17,9 +15,6 @@ const ShippingScreen = ({ history }) => {
   const [postal, setPostal] = useState(shipping.postal);
   const [country, setCountry] = useState(shipping.country);
 
-  // useEffect(() => {
-  // }, [history, userInfo]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(saveShipping({ address, city, postal, country }))
@@ -30,8 +25,6 @@ const ShippingScreen = ({ history }) => {
       <div className={styles.formContainer}>
       <Steps step1 step2 />
         <h1>Shipping</h1>
-        {/* {error ? <Message text={error} /> : null} */}
-        {/* {loading ? <Loader /> : null} */}
         <form>
         <div className={styles.field}>
             <label>Address</label>
