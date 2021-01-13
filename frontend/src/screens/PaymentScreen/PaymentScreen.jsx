@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveShipping } from "../../redux/actions/cartActions";
+import { savePaymentMethod } from "../../redux/actions/cartActions";
 import styles from "./PaymentScreen.module.css";
 import Steps from "../../components/Steps/Steps";
 
@@ -18,12 +18,13 @@ const PaymentScreen = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(savePaymentMethod(paymentMethod))
     history.push("/place-order");
   };
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
-        <Steps step1 step2 step3 />
+        <Steps step1 step2 step3/>
         <h1>Payment Method</h1>
         <form>
           <h3>Select Method</h3>

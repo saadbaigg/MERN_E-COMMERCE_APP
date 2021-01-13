@@ -2,9 +2,13 @@ import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
   SAVE_SHIPPING,
+  SAVE_PAYMENT_METHOD,
 } from "../types/cartTypes";
 
-export const cartReducer = (state = { cartItems: [], shipping: {} }, action) => {
+export const cartReducer = (
+  state = { cartItems: [], shipping: {} },
+  action
+) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
@@ -33,6 +37,11 @@ export const cartReducer = (state = { cartItems: [], shipping: {} }, action) => 
       return {
         ...state,
         shipping: action.payload,
+      };
+    case SAVE_PAYMENT_METHOD:
+      return {
+        ...state,
+        payment: action.payload,
       };
     default:
       return state;
