@@ -12,6 +12,9 @@ const CartScreen = ({ match, location, history }) => {
 
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, loading, error } = userLogin;
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -20,6 +23,15 @@ const CartScreen = ({ match, location, history }) => {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    if (userInfo) {
+      history.push('/shipping')
+    } else {
+      history.push('/login')
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -61,7 +73,7 @@ const CartScreen = ({ match, location, history }) => {
             </p>
           </span>
           <span>
-            <button>proceed to checkout</button>
+            <button onClick={handleSubmit} >proceed to checkout</button>
           </span>
         </div>
       </div>
