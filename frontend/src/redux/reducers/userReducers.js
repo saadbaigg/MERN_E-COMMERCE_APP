@@ -9,6 +9,9 @@ import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
 } from "../types/userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -39,6 +42,19 @@ export const userProfileReducer = (state = { user: {} }, action) => {
     case USER_PROFILE_SUCCESS:
       return { loading: false, user: action.payload };
     case USER_PROFILE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const updateProfileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_REQUEST:
+      return { loading: true };
+    case UPDATE_PROFILE_SUCCESS:
+      return { loading: false, success: true, updatedUser: action.payload };
+    case UPDATE_PROFILE_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

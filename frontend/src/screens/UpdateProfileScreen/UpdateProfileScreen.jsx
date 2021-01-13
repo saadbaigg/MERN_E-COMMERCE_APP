@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../../redux/actions/userActions";
+import { getUserDetails, updateUserProfile } from "../../redux/actions/userActions";
 import styles from "./UpdateProfileScreen.module.css";
 
 const UpdateProfileScreen = ({ history }) => {
@@ -18,34 +18,36 @@ const UpdateProfileScreen = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-console.log(userProfile)
 
+  const updateProfile = useSelector((state) => state.updateProfile);
+  const { success, updatedUser } = updateProfile;
 
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
     } else {
-      if(!user.name) {
-        dispatch(getUserDetails('profile'))
+      if (!user.name) {
+        dispatch(getUserDetails("profile"));
       } else {
-        setName(user.name)
-        setEmail(user.email)
+        setName(user.name);
+        setEmail(user.email);
       }
     }
   }, [dispatch, history, userInfo, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(login(email, password));
+    dispatch(updateUserProfile({id: user._id, name, email, password}))
   };
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h1>Update Profile</h1>
         {error ? <Message text={error} /> : null}
+        {success ? <Message text="Profile Updated Successfully" /> : null}
         {loading ? <Loader /> : null}
         <form>
-        <div className={styles.field}>
+          <div className={styles.field}>
             <label>Name</label>
             <input
               type="text"
