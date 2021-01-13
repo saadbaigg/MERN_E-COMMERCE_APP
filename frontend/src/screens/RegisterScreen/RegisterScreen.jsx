@@ -67,7 +67,7 @@ const RegisterScreen = ({ history }) => {
           </div>
           <button onClick={handleSubmit}>Register</button>
           <span>
-            Already have an account? <Link to="/register">Register</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </span>
         </form>
       </div>
