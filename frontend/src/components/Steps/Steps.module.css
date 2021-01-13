@@ -1,9 +1,15 @@
 .container {
-    border: 1px solid black;
     display: flex;
-    place-content: center;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--primary-color);
+    padding: 5px 0px 20px 0px;
 }
 
-.active {}
+.active {
+    font-weight: bold;
+}
 
-.disabled {}
+.disabled {
+    cursor: default;
+}

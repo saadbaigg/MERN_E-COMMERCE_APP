@@ -4,6 +4,7 @@ import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShipping } from "../../redux/actions/cartActions";
 import styles from "./ShippingScreen.module.css";
+import Steps from "../../components/Steps/Steps";
 
 const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const ShippingScreen = ({ history }) => {
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
+      <Steps step1 step2 />
         <h1>Shipping</h1>
         {/* {error ? <Message text={error} /> : null} */}
         {/* {loading ? <Loader /> : null} */}
