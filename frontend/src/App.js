@@ -6,8 +6,9 @@ import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import CartScreen from "./screens/CartScreen/CartScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import styles from "./App.module.css";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
+import UpdateProfileScreen from "./screens/UpdateProfileScreen/UpdateProfileScreen";
+import styles from "./App.module.css";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <main className={styles.main}>
         <Route path="/register" component={RegisterScreen} />
         <Route path="/login" component={LoginScreen} />
+        <Route path="/update-profile" component={UpdateProfileScreen} />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
