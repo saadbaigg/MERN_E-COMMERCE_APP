@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
 import styles from "./Message.module.css";
 
-const Message = ({ text }) => {
-    return (
-        <div className={styles.container}>
-            <p>{text}</p>
-        </div>
-    )
-}
+const Message = ({ text, variant }) => {
+  return (
+    <div
+      className={styles.container}
+      style={
+        variant === "success"
+          ? { backgroundColor: "#85f2be" }
+          : { backgroundColor: "#dc354662" }
+      }
+    >
+      <p>{text}</p>
+    </div>
+  );
+};
 
-export default Message
+export default Message;
