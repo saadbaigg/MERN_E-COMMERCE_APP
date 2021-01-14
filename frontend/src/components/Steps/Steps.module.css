@@ -1,9 +1,13 @@
 .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     color: var(--primary-color);
     padding: 0px 0px 30px 0px;
+    align-self: center;
+}
+.container p {
+    margin: 0px 25px;
 }
 
 .active {

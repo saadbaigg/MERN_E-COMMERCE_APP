@@ -7,7 +7,7 @@ import styles from "./PlaceOrderScreen.module.css";
 
 const PlaceOrderScreen = () => {
   return (
-    <>
+    <div className={styles.mainContainer}>
       <Steps step1 step2 step3 step4 />
       <div className={styles.container}>
         <div className={styles.leftContainer}>
@@ -69,7 +69,7 @@ const PlaceOrderScreen = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
