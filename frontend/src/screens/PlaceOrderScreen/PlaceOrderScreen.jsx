@@ -12,17 +12,17 @@ const PlaceOrderScreen = () => {
       <div className={styles.container}>
         <div className={styles.leftContainer}>
           <div className={styles.step}>
-            <h3>Shipping</h3>
+            <h2>Shipping</h2>
             <p>Address: L - 1596 Karachi, Pakistan</p>
           </div>
           <hr />
           <div className={styles.step}>
-            <h3>Payment Method</h3>
+            <h2>Payment Method</h2>
             <p>Method: PayPal</p>
           </div>
           <hr />
           <div className={styles.step}>
-            <h3>Order Items</h3>
+            <h2>Order Items</h2>
             <div className={styles.products}>
               <div className={styles.product}>
                 <img src={img} alt="mouse" />
@@ -45,7 +45,8 @@ const PlaceOrderScreen = () => {
           </div>
         </div>
         <div className={styles.rightContainer}>
-          <div className={styles.finalContainer}>
+          <div className={styles.orderSummary}>
+            <h2>Order Summary</h2>
             <span>
               <p>Items</p>
               <p>$1237.99</p>
