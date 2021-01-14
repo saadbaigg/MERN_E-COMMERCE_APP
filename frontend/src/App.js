@@ -10,6 +10,7 @@ import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
 import UpdateProfileScreen from "./screens/UpdateProfileScreen/UpdateProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/update-profile" component={UpdateProfileScreen} />
         <Route path="/shipping" component={ShippingScreen} />
         <Route path="/payment" component={PaymentScreen} />
+        <Route path="/place-order" component={PlaceOrderScreen} />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
