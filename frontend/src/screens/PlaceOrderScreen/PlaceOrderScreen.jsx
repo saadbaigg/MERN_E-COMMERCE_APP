@@ -19,12 +19,11 @@ const PlaceOrderScreen = ({ history }) => {
   const orderState = useSelector(state => state.order)
   const { success, order, error, loading } = orderState
 
-  // useEffect(() => {
-  //   if(success) {
-  //     history.push(`/orders/${order._id}`)
-  //   }
-  // }, [history, success])
-  console.log(shipping)
+  useEffect(() => {
+    if(success) {
+      history.push(`/orders/${order._id}`)
+    }
+  }, [history, success])
 
   const placeOrder = e => {
     e.preventDefault()
