@@ -9,7 +9,7 @@ const PlaceOrderScreen = ({ history }) => {
 
   const cart = useSelector((state) => state.cart);
   const { shipping, cartItems, payment } = cart;
-  const { address, city, country, postal } = shipping;
+  const { address, city, country, postalCode } = shipping;
 
   const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   const shippingPrice = itemsPrice > 100 ? 0 : 100
@@ -24,6 +24,7 @@ const PlaceOrderScreen = ({ history }) => {
   //     history.push(`/orders/${order._id}`)
   //   }
   // }, [history, success])
+  console.log(shipping)
 
   const placeOrder = e => {
     e.preventDefault()

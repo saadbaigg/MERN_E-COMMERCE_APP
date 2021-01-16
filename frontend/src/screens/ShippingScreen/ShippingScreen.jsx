@@ -12,12 +12,12 @@ const ShippingScreen = ({ history }) => {
 
   const [address, setAddress] = useState(shipping.address);
   const [city, setCity] = useState(shipping.city);
-  const [postal, setPostal] = useState(shipping.postal);
+  const [postalCode, setPostal] = useState(shipping.postalCode);
   const [country, setCountry] = useState(shipping.country);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(saveShipping({ address, city, postal, country }))
+    dispatch(saveShipping({ address, city, postalCode, country }))
     history.push('/payment')
   };
   return (
@@ -55,7 +55,7 @@ const ShippingScreen = ({ history }) => {
             <input
               type="text"
               name="postal"
-              value={postal}
+              value={postalCode}
               placeholder="Enter Postal"
               required
               onChange={(e) => setPostal(e.target.value)}
