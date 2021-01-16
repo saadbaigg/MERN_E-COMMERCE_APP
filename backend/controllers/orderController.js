@@ -4,9 +4,8 @@ import Order from "../models/orderModel.js";
 // @desc     fetch order
 // @route    GET /api/order
 // @access   Private
-const getOrder = asyncHandler(async (req, res) => {
+const createOrder = asyncHandler(async (req, res) => {
   const {
-    user,
     orderItems,
     shippingAddress,
     paymentMethod,
@@ -15,8 +14,8 @@ const getOrder = asyncHandler(async (req, res) => {
     totalPrice,
   } = req.body;
 
-  if(orderItems.length === 0) {
-      res.status(400)
+  if(orderItems && orderItems.length === 0) {
+      res.status(400).json({ message: 'No order items' })
   } else {
       const order = new Order({
           user: req.user._id,
@@ -34,4 +33,4 @@ const getOrder = asyncHandler(async (req, res) => {
 
 });
 
-export { getOrder };
+export { createOrder };

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveShipping } from "../../redux/actions/cartActions";
+import { createOrder } from "../../redux/actions/orderActions";
 import Steps from "../../components/Steps/Steps";
-import img from "../../assets/mouse.jpg";
 import styles from "./PlaceOrderScreen.module.css";
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -16,6 +15,27 @@ const PlaceOrderScreen = () => {
   const shippingPrice = itemsPrice > 100 ? 0 : 100
   const taxPrice = Number((0.15 * itemsPrice).toFixed(2))
   const totalPrice = (Number(itemsPrice) + Number(shippingPrice) + Number(taxPrice)).toFixed(2)
+
+  const orderState = useSelector(state => state.order)
+  const { success, order, error, loading } = orderState
+
+  // useEffect(() => {
+  //   if(success) {
+  //     history.push(`/orders/${order._id}`)
+  //   }
+  // }, [history, success])
+
+  const placeOrder = e => {
+    e.preventDefault()
+    dispatch(createOrder({
+      orderItems: cartItems,
+      shippingAddress: shipping,
+      paymentMethod: payment,
+      taxPrice: taxPrice,
+      shippingPrice: shippingPrice,
+      totalPrice: totalPrice,
+    }))
+  }
 
   return (
     <div className={styles.mainContainer}>
@@ -68,7 +88,7 @@ const PlaceOrderScreen = () => {
               <p>${totalPrice}</p>
             </span>
             <span>
-              <button>Place Order</button>
+              <button onClick={placeOrder}>Place Order</button>
             </span>
           </div>
         </div>
