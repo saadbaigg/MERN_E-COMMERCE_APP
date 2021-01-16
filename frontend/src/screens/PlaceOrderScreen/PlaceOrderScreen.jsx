@@ -6,6 +6,17 @@ import img from "../../assets/mouse.jpg";
 import styles from "./PlaceOrderScreen.module.css";
 
 const PlaceOrderScreen = () => {
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+  const { shipping, cartItems, payment } = cart;
+  const { address, city, country, postal } = shipping;
+
+  const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  const shippingPrice = itemsPrice > 100 ? 0 : 100
+  const taxPrice = Number((0.15 * itemsPrice).toFixed(2))
+  const totalPrice = (Number(itemsPrice) + Number(shippingPrice) + Number(taxPrice)).toFixed(2)
+
   return (
     <div className={styles.mainContainer}>
       <Steps step1 step2 step3 step4 />
@@ -13,34 +24,27 @@ const PlaceOrderScreen = () => {
         <div className={styles.leftContainer}>
           <div className={styles.step}>
             <h2>Shipping</h2>
-            <p>Address: L - 1596 Karachi, Pakistan</p>
+            <p>{address}</p>
           </div>
           <hr />
           <div className={styles.step}>
             <h2>Payment Method</h2>
-            <p>Method: PayPal</p>
+            <p>Method: {payment}</p>
           </div>
           <hr />
           <div className={styles.step}>
             <h2>Order Items</h2>
             <div className={styles.products}>
-              <div className={styles.product}>
-                <img src={img} alt="mouse" />
-                <p>G - Series Gaming Mouse</p>
-                <span>1 x 549.99 = 589.99</span>
-              </div>
-              <hr />
-              <div className={styles.product}>
-                <img src={img} alt="mouse" />
-                <p>G - Series Gaming Mouse</p>
-                <span>1 x 549.99 = 589.99</span>
-              </div>
-              <hr />
-              <div className={styles.product}>
-                <img src={img} alt="mouse" />
-                <p>G - Series Gaming Mouse</p>
-                <span>1 x 549.99 = 589.99</span>
-              </div>
+              {cartItems.map((product) => (
+                <>
+                  <div className={styles.product} key={product.product}>
+                    <img src={product.image} alt={product.name} />
+                    <p>{product.name}</p>
+                    <span>{product.qty} x {product.price} = {(product.qty * product.price).toFixed(2)}</span>
+                  </div>
+                  <hr />
+                </>
+              ))}
             </div>
           </div>
         </div>
@@ -49,19 +53,19 @@ const PlaceOrderScreen = () => {
             <h2>Order Summary</h2>
             <span>
               <p>Items</p>
-              <p>$1237.99</p>
+              <p>${itemsPrice}</p>
             </span>
             <span>
               <p>Shipping</p>
-              <p>$0.00</p>
+              <p>${shippingPrice}</p>
             </span>
             <span>
               <p>Tax</p>
-              <p>$200.99</p>
+              <p>${taxPrice}</p>
             </span>
             <span>
               <p>Total</p>
-              <p>$1540.95</p>
+              <p>${totalPrice}</p>
             </span>
             <span>
               <button>Place Order</button>

@@ -18,7 +18,7 @@ const Header = () => {
         <p>cart</p>
       </Link>
       {userInfo ? (
-        <Link to="/">
+        <Link to="/update-profile">
           <p>{userInfo.name}</p>
         </Link>
       ) : (
