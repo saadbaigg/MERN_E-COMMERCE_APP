@@ -2,12 +2,16 @@
     width: 100%;
     margin-top: 30px;
 }
+.container i:hover {
+    cursor: pointer;
+}
 .container h1 {
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: var(--primary-color)
 }
 .container table {
+    margin-top: 10px;
     width: 100%;
     border-collapse: collapse;
     font-size: 16px;

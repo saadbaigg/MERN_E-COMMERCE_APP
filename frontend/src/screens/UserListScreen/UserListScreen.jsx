@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../redux/actions/userActions";
+import { deleteUser, getAllUsers } from "../../redux/actions/userActions";
 import styles from "./UserListScreen.module.css";
 
 const UserListScreen = ({ history }) => {
@@ -15,17 +15,25 @@ const UserListScreen = ({ history }) => {
   const allUsers = useSelector((state) => state.allUsers);
   const { users, loading: usersLoading, error: usersError } = allUsers;
 
+  const deleteUserUpdate = useSelector((state) => state.deleteUser);
+  const { message, loading: deleteLoading, error: deleteError } = deleteUserUpdate;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(getAllUsers());
     } else {
       history.push("/login");
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, message]);
 
   return (
     <div className={styles.container}>
       <h1>Users</h1>
+      {deleteLoading ? (
+        <Loader width="30px" />
+      ) : message ? (
+        <Message variant="success" text={message.message} />
+      ) : null}
       {!users ? (
         <Loader width="50px" />
       ) : (
@@ -54,7 +62,11 @@ const UserListScreen = ({ history }) => {
                 <i className="fas fa-edit" style={{ color: "green" }}></i>
               </td>
               <td>
-                <i className="fas fa-trash" style={{ color: "red" }}></i>
+                <i
+                  className="fas fa-trash"
+                  onClick={() => dispatch(deleteUser(user._id))}
+                  style={{ color: "red" }}
+                ></i>
               </td>
             </tr>
           ))}
