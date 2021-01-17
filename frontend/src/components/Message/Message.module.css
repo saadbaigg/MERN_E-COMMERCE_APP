@@ -4,3 +4,6 @@
     padding: 15px 10px;
     color: #000000;
 }
+.container>p {
+    margin: 0px !important;
+}

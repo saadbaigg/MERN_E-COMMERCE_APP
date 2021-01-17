@@ -11,6 +11,7 @@ import UpdateProfileScreen from "./screens/UpdateProfileScreen/UpdateProfileScre
 import ShippingScreen from "./screens/ShippingScreen/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
+import OrderDetails from "./screens/OrderDetails/OrderDetails";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/shipping" component={ShippingScreen} />
         <Route path="/payment" component={PaymentScreen} />
         <Route path="/place-order" component={PlaceOrderScreen} />
+        <Route path="/orders/:id" component={OrderDetails} />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
