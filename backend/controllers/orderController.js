@@ -77,12 +77,7 @@ const updateOrder = asyncHandler(async (req, res) => {
 // @access   Private
 const getMyOrders = asyncHandler(async (req, res) => {
   const order = await Order.find({ user: req.user._id });
-
-  if (order) {
-    res.status(200).json(order);
-  } else {
-    res.status(404).json({ message: "No orders found" });
-  }
+  res.status(200).json(order);
 });
 
 export { createOrder, getOrder, updateOrder, getMyOrders };
