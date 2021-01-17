@@ -5,9 +5,12 @@ import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./OrderDetails.module.css";
 
-const OrderDetails = ({ match }) => {
+const OrderDetails = ({ match, history }) => {
   const dispatch = useDispatch();
   const orderId = match.params.id;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, payment } = cart;
@@ -35,8 +38,11 @@ const OrderDetails = ({ match }) => {
   } = updatedOrder;
 
   useEffect(() => {
+    if(!userInfo) {
+      history.push('/login')
+    }
     dispatch(getOrder(orderId));
-  }, [dispatch, orderId, paySuccess]);
+  }, [dispatch, orderId, paySuccess, history]);
 
   const pay = (e) => {
     e.preventDefault();

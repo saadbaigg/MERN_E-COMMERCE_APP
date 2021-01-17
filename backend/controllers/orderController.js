@@ -14,70 +14,75 @@ const createOrder = asyncHandler(async (req, res) => {
     totalPrice,
   } = req.body;
 
-  if(orderItems && orderItems.length === 0) {
-      res.status(400).json({ message: 'No order items' })
+  if (orderItems && orderItems.length === 0) {
+    res.status(400).json({ message: "No order items" });
   } else {
-      const order = new Order({
-          user: req.user._id,
-          orderItems,
-          shippingAddress,
-          paymentMethod,
-          taxPrice,
-          shippingPrice,
-          totalPrice,
-      })
-      const createdOrder = await order.save()
+    const order = new Order({
+      user: req.user._id,
+      orderItems,
+      shippingAddress,
+      paymentMethod,
+      taxPrice,
+      shippingPrice,
+      totalPrice,
+    });
+    const createdOrder = await order.save();
 
-      res.status(201).json(createdOrder)
+    res.status(201).json(createdOrder);
   }
-
 });
 
 // @desc     get order by id
 // @route    GET /api/order/:id
 // @access   Private
 const getOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id).populate(
+    "user",
+    "name email"
+  );
 
-  const order = await Order.findById(req.params.id).populate('user', 'name email')
-
-  if(order) {
-    res.status(200).json(order)
+  if (order) {
+    res.status(200).json(order);
   } else {
-    res.status(404).json({ message: 'No order found' })
+    res.status(404).json({ message: "No order found" });
   }
-
 });
 
 // @desc     update order
 // @route    PUT /api/order/:id/pay
 // @access   Private
 const updateOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
 
-  const order = await Order.findById(req.params.id)
-
-  if(order) {
-    order.isPaid = true
-    order.paidAt = Date.now()
+  if (order) {
+    order.isPaid = true;
+    order.paidAt = Date.now();
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
       update_time: req.body.update_time,
       email_address: req.body.email_address,
-    }
+    };
 
-    const updatedOrder = await order.save()
+    const updatedOrder = await order.save();
 
-    res.json(updatedOrder)
+    res.json(updatedOrder);
   } else {
-    res.status(404).json({ message: 'No order found' })
+    res.status(404).json({ message: "No order found" });
   }
-  
 });
-  // order.paymentMethod = {
-  //   id: req.body.id,
-  //   status: req.body.status,
-  //   update_time: req.body.update_time,
-  //   email_address: req.body.payer.email_address
-  // }
 
-export { createOrder, getOrder, updateOrder };
+// @desc     get my orders
+// @route    GET /api/myorders
+// @access   Private
+const getMyOrders = asyncHandler(async (req, res) => {
+  const order = await Order.find({ user: req.user._id });
+
+  if (order) {
+    res.status(200).json(order);
+  } else {
+    res.status(404).json({ message: "No orders found" });
+  }
+});
+
+export { createOrder, getOrder, updateOrder, getMyOrders };
