@@ -17,6 +17,9 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_FAIL,
   CLEAR_USERS,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
 } from "../types/userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -76,6 +79,19 @@ export const allUsersReducer = (state = { users: [] }, action) => {
       return { loading: false, error: action.payload };
     case CLEAR_USERS:
       return { users: [] };
+    default:
+      return state;
+  }
+};
+
+export const deleteUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_USER_REQUEST:
+      return { loading: true };
+    case DELETE_USER_SUCCESS:
+      return { loading: false, message: action.payload };
+    case DELETE_USER_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

@@ -17,6 +17,9 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_FAIL,
   CLEAR_USERS,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
 } from "../types/userTypes";
 
 // LOGIN USER
@@ -138,5 +141,25 @@ export const getAllUsers = () => async (dispatch, getState) => {
     dispatch({ type: GET_USERS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: GET_USERS_FAIL, payload: err.message });
+  }
+};
+
+// DELETE USER
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: DELETE_USER_REQUEST });
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(`/api/users/${id}`, config);
+
+    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: DELETE_USER_FAIL, payload: err.message });
   }
 };
