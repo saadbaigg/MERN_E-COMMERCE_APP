@@ -100,8 +100,10 @@ const UpdateProfileScreen = ({ history }) => {
       {/* my orders */}
       <div className={styles.myOrdersContainer}>
         <h1>My orders</h1>
-        {myOrdersLoading  ? (
+        {myOrdersLoading ? (
           <Loader />
+        ) : orders.myOrders.length === 0 ? (
+          <Message variant="error" text="No Orders" />
         ) : (
           orders.myOrders.map((item) => (
             <table>
