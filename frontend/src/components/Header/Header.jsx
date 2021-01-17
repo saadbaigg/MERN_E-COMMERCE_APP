@@ -17,6 +17,17 @@ const Header = () => {
       <Link to="/cart">
         <p>cart</p>
       </Link>
+      {userInfo.isAdmin ? (
+        <div className={styles.dropdown}>
+          <button className={styles.dropbtn}>
+            Admin <i class="fas fa-sort-down"></i>
+          </button>
+          <div className={styles.dropdownContent}>
+            <Link to="/userslist">Users</Link>
+            <Link to="/">Products</Link>
+          </div>
+        </div>
+      ) : null}
       {userInfo ? (
         <Link to="/update-profile">
           <p>{userInfo.name}</p>
