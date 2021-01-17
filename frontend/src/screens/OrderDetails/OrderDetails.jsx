@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrder } from "../../redux/actions/orderActions";
+import { getOrder, updateOrder } from "../../redux/actions/orderActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./OrderDetails.module.css";
 
 const OrderDetails = ({ match }) => {
   const dispatch = useDispatch();
+  const orderId = match.params.id;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, payment } = cart;
@@ -17,7 +18,8 @@ const OrderDetails = ({ match }) => {
   const itemsPrice = Number(
     cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   ).toFixed(2);
-  const shippingPrice = itemsPrice > 100 ? Number(0).toFixed(2) : Number(100).toFixed(2);
+  const shippingPrice =
+    itemsPrice > 100 ? Number(0).toFixed(2) : Number(100).toFixed(2);
   const taxPrice = Number((0.15 * itemsPrice).toFixed(2));
   const totalPrice = (
     Number(itemsPrice) +
@@ -25,14 +27,28 @@ const OrderDetails = ({ match }) => {
     Number(taxPrice)
   ).toFixed(2);
 
+  const updatedOrder = useSelector((state) => state.updateOrder);
+  const {
+    success: paySuccess,
+    error: payError,
+    loading: payLoading,
+  } = updatedOrder;
+
   useEffect(() => {
-    dispatch(getOrder(match.params.id));
-  }, []);
+    dispatch(getOrder(orderId));
+  }, [dispatch, orderId, paySuccess]);
 
-  const placeOrder = (e) => {
+  const pay = (e) => {
     e.preventDefault();
+    dispatch(
+      updateOrder(orderId, {
+        id: 1,
+        status: "status",
+        update_time: "update_time",
+        email_address: "email_address",
+      })
+    );
   };
-
   return (
     <>
       {loading ? (
@@ -71,8 +87,8 @@ const OrderDetails = ({ match }) => {
                         <img src={product.image} alt={product.name} />
                         <p>{product.name}</p>
                         <span>
-                          {product.qty} x {product.price} ={" "}
-                          ${(product.qty * product.price).toFixed(2)}
+                          {product.qty} x {product.price} = $
+                          {(product.qty * product.price).toFixed(2)}
                         </span>
                       </div>
                       <hr />
@@ -101,7 +117,7 @@ const OrderDetails = ({ match }) => {
                   <p>${totalPrice}</p>
                 </span>
                 <span>
-                  <button onClick={placeOrder}>Place Order</button>
+                  <button onClick={pay}>Pay</button>
                 </span>
               </div>
             </div>
