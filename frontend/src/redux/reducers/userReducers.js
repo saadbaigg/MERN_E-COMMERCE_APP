@@ -65,10 +65,10 @@ export const updateProfileReducer = (state = {}, action) => {
   }
 };
 
-export const allUsersReducer = (state = { user: [] }, action) => {
+export const allUsersReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case GET_USERS_REQUEST:
-      return { ...state, loading: true };
+      return { loading: true };
     case GET_USERS_SUCCESS:
       return { loading: false, users: action.payload };
     case GET_USERS_FAIL:
