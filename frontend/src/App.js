@@ -12,6 +12,7 @@ import ShippingScreen from "./screens/ShippingScreen/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 import OrderDetails from "./screens/OrderDetails/OrderDetails";
+import UserListScreen from "./screens/UserListScreen/UserListScreen";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
     <Router>
       <Header />
       <main className={styles.main}>
+        <Route path="/userslist" component={UserListScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/login" component={LoginScreen} />
         <Route path="/update-profile" component={UpdateProfileScreen} />
