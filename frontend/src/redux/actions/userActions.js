@@ -16,6 +16,7 @@ import {
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
   GET_USERS_FAIL,
+  CLEAR_USERS,
 } from "../types/userTypes";
 
 // LOGIN USER
@@ -49,6 +50,7 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT });
   localStorage.removeItem("userInfo");
+  dispatch({ type: CLEAR_USERS })
 };
 
 // REGISTER

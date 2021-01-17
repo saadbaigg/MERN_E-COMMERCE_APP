@@ -16,6 +16,7 @@ import {
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
   GET_USERS_FAIL,
+  CLEAR_USERS,
 } from "../types/userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -73,6 +74,8 @@ export const allUsersReducer = (state = { users: [] }, action) => {
       return { loading: false, users: action.payload };
     case GET_USERS_FAIL:
       return { loading: false, error: action.payload };
+    case CLEAR_USERS:
+      return { users: [] };
     default:
       return state;
   }

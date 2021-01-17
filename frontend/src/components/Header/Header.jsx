@@ -17,7 +17,7 @@ const Header = () => {
       <Link to="/cart">
         <p>cart</p>
       </Link>
-      {userInfo.isAdmin ? (
+      {userInfo && userInfo.isAdmin ? (
         <div className={styles.dropdown}>
           <button className={styles.dropbtn}>
             Admin <i class="fas fa-sort-down"></i>
@@ -37,7 +37,15 @@ const Header = () => {
           <p>sign in</p>
         </Link>
       )}
-      {userInfo ? <p onClick={() => dispatch(logout())}>Logout</p> : null}
+      {userInfo ? (
+        <p
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          Logout
+        </p>
+      ) : null}
     </header>
   );
 };
