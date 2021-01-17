@@ -7,6 +7,7 @@ import {
   getUserDetails,
   updateUserProfile,
 } from "../../redux/actions/userActions";
+import { getMyOrders } from "../../redux/actions/orderActions";
 import styles from "./UpdateProfileScreen.module.css";
 
 const UpdateProfileScreen = ({ history }) => {
@@ -25,6 +26,13 @@ const UpdateProfileScreen = ({ history }) => {
   const updateProfile = useSelector((state) => state.updateProfile);
   const { success, updatedUser } = updateProfile;
 
+  const orders = useSelector((state) => state.myOrders);
+  const {
+    success: myOrdersSuccess,
+    myOrders,
+    loading: myOrdersLoading,
+  } = orders;
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -36,12 +44,14 @@ const UpdateProfileScreen = ({ history }) => {
         setEmail(user.email);
       }
     }
+    dispatch(getMyOrders());
   }, [dispatch, history, userInfo, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateUserProfile({ id: user._id, name, email, password }));
   };
+  console.log(orders);
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -85,10 +95,45 @@ const UpdateProfileScreen = ({ history }) => {
             />
           </div>
           <button onClick={handleSubmit}>Update</button>
-          {/* <span>
-            Don't have an account? <Link to="/register">Register</Link>
-          </span> */}
         </form>
+      </div>
+      {/* my orders */}
+      <div className={styles.myOrdersContainer}>
+        <h1>My orders</h1>
+        {myOrdersLoading  ? (
+          <Loader />
+        ) : (
+          orders.myOrders.map((item) => (
+            <table>
+              <tr className={styles.headingRow}>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+              </tr>
+              <tr className={styles.dataRow}>
+                <td>{item._id}</td>
+                <td>{item.createdAt}</td>
+                <td>{item.totalPrice}</td>
+                <td>
+                  {item.isPaid ? (
+                    <i className="fas fa-check" style={{ color: "green" }}></i>
+                  ) : (
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
+                  )}
+                </td>
+                <td>
+                  {item.isDelivered ? (
+                    <i className="fas fa-check" style={{ color: "green" }}></i>
+                  ) : (
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
+                  )}
+                </td>
+              </tr>
+            </table>
+          ))
+        )}
       </div>
     </div>
   );

@@ -58,10 +58,10 @@ export const updateOrderReducer = (state = {}, action) => {
   }
 };
 
-export const myOrdersReducer = (state = {}, action) => {
+export const myOrdersReducer = (state = { myOrders: [] }, action) => {
   switch (action.type) {
     case GET_MY_ORDERS_REQUEST:
-      return { ...state, loading: true };
+      return { loading: true };
     case GET_MY_ORDERS_SUCCESS:
       return { loading: false, success: true, myOrders: action.payload };
     case GET_MY_ORDERS_FAIL:

@@ -1,17 +1,18 @@
 .container {
     display: flex;
-    place-content: center;
+    justify-content: space-between;
     height: 100vh;
+    padding-top: 30px;
 }
 .formContainer {
-    margin-top: 30px;
-    width: 50%;
-    min-width: 350px;
+    width: 35%;
+    min-width: 300px;
     max-width: 600px;
 }
 .formContainer h1 {
     text-transform: uppercase;
     margin-bottom: 30px;
+    color: var(--primary-color)
 }
 .formContainer form {
     display: flex;
@@ -44,4 +45,37 @@
     text-transform: uppercase;
     margin-bottom: 25px;
     cursor: pointer;
+}
+/* my orders */
+.myOrdersContainer {
+    width: 62%;
+}
+.myOrdersContainer .icon {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+.myOrdersContainer h1 {
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: var(--primary-color)
+}
+.myOrdersContainer > table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.myOrdersContainer > table th{
+    text-align: center;
+}
+.headingRow th {
+    padding: 5px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.122);
+}
+.dataRow {
+    background: #32323218;
+}
+.myOrdersContainer > table td {
+    text-align: center;
+    padding: 15px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.122);
 }
