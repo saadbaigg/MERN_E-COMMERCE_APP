@@ -13,6 +13,9 @@ import {
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAIL,
 } from "../types/userTypes";
 
 // LOGIN USER
@@ -113,5 +116,25 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: UPDATE_PROFILE_FAIL, payload: err.message });
+  }
+};
+
+// GET ALL USERS
+
+export const getAllUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: GET_USERS_REQUEST });
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/users`, config);
+
+    dispatch({ type: GET_USERS_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: GET_USERS_FAIL, payload: err.message });
   }
 };

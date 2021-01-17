@@ -1,3 +1,4 @@
+import { GET_MY_ORDERS_FAIL } from "../types/orderTypes";
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -12,6 +13,9 @@ import {
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAIL,
 } from "../types/userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -55,6 +59,19 @@ export const updateProfileReducer = (state = {}, action) => {
     case UPDATE_PROFILE_SUCCESS:
       return { loading: false, success: true, updatedUser: action.payload };
     case UPDATE_PROFILE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const allUsersReducer = (state = { user: [] }, action) => {
+  switch (action.type) {
+    case GET_USERS_REQUEST:
+      return { ...state, loading: true };
+    case GET_USERS_SUCCESS:
+      return { loading: false, users: action.payload };
+    case GET_USERS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
