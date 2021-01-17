@@ -20,6 +20,7 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
+  CLEAR_DELETE_USER_MESSAGE,
 } from "../types/userTypes";
 
 // LOGIN USER
@@ -163,3 +164,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     dispatch({ type: DELETE_USER_FAIL, payload: err.message });
   }
 };
+
+// CLEAR DELETE MESSAGE
+
+export const clearDeleteMsg = () => async (dispatch) => dispatch({ type: CLEAR_DELETE_USER_MESSAGE });

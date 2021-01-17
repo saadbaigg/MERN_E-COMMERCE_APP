@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, getAllUsers } from "../../redux/actions/userActions";
+import {
+  clearDeleteMsg,
+  deleteUser,
+  getAllUsers,
+} from "../../redux/actions/userActions";
 import styles from "./UserListScreen.module.css";
 
 const UserListScreen = ({ history }) => {
@@ -16,7 +20,11 @@ const UserListScreen = ({ history }) => {
   const { users, loading: usersLoading, error: usersError } = allUsers;
 
   const deleteUserUpdate = useSelector((state) => state.deleteUser);
-  const { message, loading: deleteLoading, error: deleteError } = deleteUserUpdate;
+  const {
+    message,
+    loading: deleteLoading,
+    error: deleteError,
+  } = deleteUserUpdate;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -32,7 +40,18 @@ const UserListScreen = ({ history }) => {
       {deleteLoading ? (
         <Loader width="30px" />
       ) : message ? (
-        <Message variant="success" text={message.message} />
+        <Message
+          variant="success"
+          text={message.message}
+          onClick={() => dispatch(clearDeleteMsg())}
+        />
+      ) : null}
+      {error ? (
+        <Message
+          variant="success"
+          text="Something's wrong"
+          onClick={() => dispatch(clearDeleteMsg())}
+        />
       ) : null}
       {!users ? (
         <Loader width="50px" />

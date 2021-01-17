@@ -20,6 +20,7 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
+  CLEAR_DELETE_USER_MESSAGE,
 } from "../types/userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -92,6 +93,8 @@ export const deleteUserReducer = (state = {}, action) => {
       return { loading: false, message: action.payload };
     case DELETE_USER_FAIL:
       return { loading: false, error: action.payload };
+    case CLEAR_DELETE_USER_MESSAGE:
+      return {};
     default:
       return state;
   }

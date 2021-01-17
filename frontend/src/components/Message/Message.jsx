@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Message.module.css";
 
-const Message = ({ text, variant }) => {
+const Message = ({ text, variant, onClick }) => {
   return (
     <div
       className={styles.container}
@@ -12,6 +12,7 @@ const Message = ({ text, variant }) => {
       }
     >
       <p>{text}</p>
+      <i className="fas fa-times" onClick={onClick} style={{ color: "#323232" }}></i>
     </div>
   );
 };
