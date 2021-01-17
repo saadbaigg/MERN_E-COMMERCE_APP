@@ -106,6 +106,7 @@ const UpdateProfileScreen = ({ history }) => {
           <Message variant="error" text="No Orders" />
         ) : (
           orders.myOrders.map((item) => (
+            <Link to={`/orders/${item._id}`}>
             <table>
               <tr className={styles.headingRow}>
                 <th>ID</th>
@@ -134,6 +135,7 @@ const UpdateProfileScreen = ({ history }) => {
                 </td>
               </tr>
             </table>
+            </Link>
           ))
         )}
       </div>
