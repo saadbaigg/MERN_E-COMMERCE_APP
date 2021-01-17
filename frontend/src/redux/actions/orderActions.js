@@ -3,6 +3,9 @@ import {
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_FAIL,
+  ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
+  ORDER_DETAILS_FAIL
 } from "../types/orderTypes";
 
 // Create order
@@ -23,5 +26,25 @@ export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: CREATE_ORDER_FAIL, payload: err.message });
+  }
+};
+
+// get order by id
+
+export const getOrder = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_DETAILS_REQUEST });
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/orders/${id}`, config);
+
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: ORDER_DETAILS_FAIL, payload: err.message });
   }
 };
