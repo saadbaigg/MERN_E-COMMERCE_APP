@@ -24,6 +24,10 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_FAIL,
+  EDIT_USER_REQUEST,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAIL,
+  EDIT_USER_RESET,
 } from "../types/userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -111,6 +115,21 @@ export const getUserReducer = (state = {}, action) => {
       return { loading: false, user: action.payload };
     case GET_USER_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const editUserReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case EDIT_USER_REQUEST:
+      return { loading: true };
+    case EDIT_USER_SUCCESS:
+      return { loading: false, user: action.payload };
+    case EDIT_USER_FAIL:
+      return { loading: false, error: action.payload };
+    case EDIT_USER_RESET:
+      return {};
     default:
       return state;
   }

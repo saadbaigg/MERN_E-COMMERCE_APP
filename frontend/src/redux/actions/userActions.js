@@ -21,9 +21,9 @@ import {
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
   CLEAR_DELETE_USER_MESSAGE,
-  GET_USER_REQUEST,
-  GET_USER_FAIL,
-  GET_USER_SUCCESS,
+  EDIT_USER_REQUEST,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAIL,
 } from "../types/userTypes";
 
 // LOGIN USER
@@ -172,22 +172,25 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
 export const clearDeleteMsg = () => async (dispatch) => dispatch({ type: CLEAR_DELETE_USER_MESSAGE });
 
-// GET USER BY ID
+// EDIT USER
 
-export const getUser = (user) => async (dispatch, getState) => {
+export const editUser = (user) => async (dispatch, getState) => {
   try {
-    dispatch({ type: GET_USER_REQUEST });
+    dispatch({ type: EDIT_USER_REQUEST });
 
     const config = {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
       },
     };
 
-    const { data } = await axios.get(`/api/users/${user._id}`, config);
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config);
 
-    dispatch({ type: GET_USER_SUCCESS, payload: data });
+    dispatch({ type: EDIT_USER_SUCCESS, payload: data });
+
+    dispatch({ type: USER_PROFILE_SUCCESS, payload: data });
   } catch (err) {
-    dispatch({ type: GET_USER_FAIL, payload: err.message });
+    dispatch({ type: EDIT_USER_FAIL, payload: err.message });
   }
 };
