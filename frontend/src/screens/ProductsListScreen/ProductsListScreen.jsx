@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../../redux/actions/productActions";
+import {
+  listProducts,
+  deleteProduct,
+  clearDeleteMsg
+} from "../../redux/actions/productActions";
 import styles from "./ProductsListScreen.module.css";
 
 const ProductsListScreen = ({ history }) => {
@@ -19,12 +23,12 @@ const ProductsListScreen = ({ history }) => {
     error: productError,
   } = productList;
 
-  // const deleteUserUpdate = useSelector((state) => state.deleteUser);
-  // const {
-  //   message,
-  //   loading: deleteLoading,
-  //   error: deleteError,
-  // } = deleteUserUpdate;
+  const deleteProductState = useSelector((state) => state.deleteProduct);
+  const {
+    message,
+    loading: deleteLoading,
+    error: deleteError,
+  } = deleteProductState;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -32,7 +36,7 @@ const ProductsListScreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, message]);
 
   return (
     <div className={styles.container}>
@@ -40,7 +44,7 @@ const ProductsListScreen = ({ history }) => {
         <h1>Products</h1>
         <button>Add new product</button>
       </div>
-      {/* {deleteLoading ? (
+      {deleteLoading ? (
         <Loader width="30px" />
       ) : message ? (
         <Message
@@ -49,49 +53,49 @@ const ProductsListScreen = ({ history }) => {
           onClick={() => dispatch(clearDeleteMsg())}
         />
       ) : null}
-      {error ? (
+      {deleteError ? (
         <Message
           variant="success"
           text="Something's wrong"
           onClick={() => dispatch(clearDeleteMsg())}
         />
       ) : null}
-      {!users ? (
+      {!products ? (
         <Loader width="50px" />
-      ) : ( */}
-      <table>
-        <tr className={styles.headingRow}>
-          <th>ID</th>
-          <th>NAME</th>
-          <th>PRICE</th>
-          <th>CATEGORY</th>
-          <th>BRAND</th>
-          <th></th>
-          <th></th>
-        </tr>
-        {products.map((product) => (
-          <tr className={styles.dataRow}>
-            <td>{product._id}</td>
-            <td>{product.name}</td>
-            <td>{product.price}</td>
-            <td>{product.category}</td>
-            <td>{product.brand}</td>
-            <td>
-              <Link to={`/product/${product._id}/edit`}>
-                <i className="fas fa-edit" style={{ color: "green" }}></i>
-              </Link>
-            </td>
-            <td>
-              <i
-                className="fas fa-trash"
-                // onClick={() => dispatch(deleteUser(user._id))}
-                style={{ color: "red" }}
-              ></i>
-            </td>
+      ) : (
+        <table>
+          <tr className={styles.headingRow}>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>CATEGORY</th>
+            <th>BRAND</th>
+            <th></th>
+            <th></th>
           </tr>
-        ))}
-      </table>
-      {/* // )} */}
+          {products.map((product) => (
+            <tr className={styles.dataRow}>
+              <td>{product._id}</td>
+              <td>{product.name}</td>
+              <td>{product.price}</td>
+              <td>{product.category}</td>
+              <td>{product.brand}</td>
+              <td>
+                <Link to={`/product/${product._id}/edit`}>
+                  <i className="fas fa-edit" style={{ color: "green" }}></i>
+                </Link>
+              </td>
+              <td>
+                <i
+                  className="fas fa-trash"
+                  onClick={() => dispatch(deleteProduct(product._id))}
+                  style={{ color: "red" }}
+                ></i>
+              </td>
+            </tr>
+          ))}
+        </table>
+      )}
     </div>
   );
 };
