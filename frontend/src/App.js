@@ -5,7 +5,6 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import CartScreen from "./screens/CartScreen/CartScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
 import UpdateProfileScreen from "./screens/UpdateProfileScreen/UpdateProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen/ShippingScreen";
@@ -13,14 +12,18 @@ import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 import OrderDetails from "./screens/OrderDetails/OrderDetails";
 import UserListScreen from "./screens/UserListScreen/UserListScreen";
-import styles from "./App.module.css";
 import EditUserScreen from "./screens/EditUserScreen/EditUserScreen";
+import ProductsListScreen from "./screens/ProductsListScreen/ProductsListScreen";
+
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import styles from "./App.module.css";
 
 const App = () => {
   return (
     <Router>
       <Header />
       <main className={styles.main}>
+        <Route path="/admin/productslist" component={ProductsListScreen} />
         <Route path="/userslist" component={UserListScreen} />
         <Route path="/user/:id/edit" component={EditUserScreen} />
         <Route path="/register" component={RegisterScreen} />

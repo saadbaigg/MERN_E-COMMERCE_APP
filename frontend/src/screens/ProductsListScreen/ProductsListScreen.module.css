@@ -2,12 +2,26 @@
     width: 100%;
     margin-top: 30px;
 }
+.topContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.topContainer button {
+    border-radius: 3px;
+    padding: 15px 40px;
+    background: var(--primary-color);
+    border: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
 .container i:hover {
     cursor: pointer;
 }
 .container h1 {
     text-transform: uppercase;
-    margin-bottom: 20px;
     color: var(--primary-color)
 }
 .container table {

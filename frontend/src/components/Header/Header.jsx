@@ -24,7 +24,7 @@ const Header = () => {
           </button>
           <div className={styles.dropdownContent}>
             <Link to="/userslist">Users</Link>
-            <Link to="/">Products</Link>
+            <Link to="/admin/productslist">Products</Link>
           </div>
         </div>
       ) : null}
