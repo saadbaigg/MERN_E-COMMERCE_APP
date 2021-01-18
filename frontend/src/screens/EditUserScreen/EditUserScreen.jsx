@@ -3,13 +3,33 @@ import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-// import { register } from "../../redux/actions/userActions";
+import { getUserDetails } from "../../redux/actions/userActions";
 import styles from "./EditUserScreen.module.css";
 
 const EditUserScreen = ({ history, match }) => {
+  const dispatch = useDispatch()
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, loading, error } = userLogin;
+
+  const userProfile = useSelector(state => state.userProfile)
+  const { user, loading:profileLoading, error:profileError } = userProfile
+
+
+  useEffect(() => {
+    if(!user.name || user._id !== match.params.id) {
+      dispatch(getUserDetails(match.params.id))
+    } else {
+      setName(user.name)
+      setEmail(user.email)
+      setIsAdmin(user.isAdmin)
+    }
+  }, [dispatch, history, match, user])
 
   const handleSubmit = (e) => {
     e.preventDefault();
