@@ -14,12 +14,14 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 import OrderDetails from "./screens/OrderDetails/OrderDetails";
 import UserListScreen from "./screens/UserListScreen/UserListScreen";
 import styles from "./App.module.css";
+import EditUserScreen from "./screens/EditUserScreen/EditUserScreen";
 
 const App = () => {
   return (
     <Router>
       <Header />
       <main className={styles.main}>
+        <Route path="/userslist/:id/edit" component={EditUserScreen} />
         <Route path="/userslist" component={UserListScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/login" component={LoginScreen} />

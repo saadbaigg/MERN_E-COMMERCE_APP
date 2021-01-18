@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
@@ -14,7 +14,7 @@ const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo, loading, error } = userLogin;
+  const { userInfo, error } = userLogin;
 
   const allUsers = useSelector((state) => state.allUsers);
   const { users, loading: usersLoading, error: usersError } = allUsers;
@@ -78,7 +78,9 @@ const UserListScreen = ({ history }) => {
                 )}
               </td>
               <td>
-                <i className="fas fa-edit" style={{ color: "green" }}></i>
+                <Link to={`/userslist/${user._id}/edit`}>
+                  <i className="fas fa-edit" style={{ color: "green" }}></i>
+                </Link>
               </td>
               <td>
                 <i
