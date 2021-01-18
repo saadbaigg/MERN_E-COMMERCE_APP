@@ -78,7 +78,7 @@ const UserListScreen = ({ history }) => {
                 )}
               </td>
               <td>
-                <Link to={`/userslist/${user._id}/edit`}>
+                <Link to={`/user/${user._id}/edit`}>
                   <i className="fas fa-edit" style={{ color: "green" }}></i>
                 </Link>
               </td>

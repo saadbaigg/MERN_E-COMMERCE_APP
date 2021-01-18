@@ -125,7 +125,7 @@ export const editUserReducer = (state = { user: {} }, action) => {
     case EDIT_USER_REQUEST:
       return { loading: true };
     case EDIT_USER_SUCCESS:
-      return { loading: false, user: action.payload };
+      return { loading: false, success: true, user: action.payload };
     case EDIT_USER_FAIL:
       return { loading: false, error: action.payload };
     case EDIT_USER_RESET:

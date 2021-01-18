@@ -21,8 +21,8 @@ const App = () => {
     <Router>
       <Header />
       <main className={styles.main}>
-        <Route path="/userslist/:id/edit" component={EditUserScreen} />
         <Route path="/userslist" component={UserListScreen} />
+        <Route path="/user/:id/edit" component={EditUserScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/login" component={LoginScreen} />
         <Route path="/update-profile" component={UpdateProfileScreen} />

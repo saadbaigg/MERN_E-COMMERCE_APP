@@ -24,6 +24,7 @@ import {
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAIL,
+  EDIT_USER_RESET,
 } from "../types/userTypes";
 
 // LOGIN USER
@@ -58,6 +59,7 @@ export const logout = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT });
   localStorage.removeItem("userInfo");
   dispatch({ type: CLEAR_USERS })
+  dispatch({ type: EDIT_USER_RESET })
 };
 
 // REGISTER
@@ -194,3 +196,7 @@ export const editUser = (user) => async (dispatch, getState) => {
     dispatch({ type: EDIT_USER_FAIL, payload: err.message });
   }
 };
+
+// CLEAR EDIT MESSAGES
+
+export const clearEditMsg = () => async (dispatch) => dispatch({ type: EDIT_USER_RESET });
