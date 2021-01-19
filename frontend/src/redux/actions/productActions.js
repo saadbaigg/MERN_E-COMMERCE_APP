@@ -10,6 +10,9 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
   CLEAR_DELETE_PRODUCT_MESSAGE,
+  CREATE_PRODUCT_REQUEST,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_FAIL,
 } from "../types/productTypes";
 
 export const listProducts = () => async (dispatch) => {
@@ -59,3 +62,24 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 // CLEAR DELETE MESSAGE
 
 export const clearDeleteMsg = () => async (dispatch) => dispatch({ type: CLEAR_DELETE_PRODUCT_MESSAGE });
+
+// CREATE PRODUCT
+
+export const createProduct = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: CREATE_PRODUCT_REQUEST });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.post("/api/products", {}, config);
+
+    dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: CREATE_PRODUCT_FAIL, payload: err.message });
+  }
+};
