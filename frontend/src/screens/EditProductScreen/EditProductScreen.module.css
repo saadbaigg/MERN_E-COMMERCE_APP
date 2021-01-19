@@ -40,6 +40,24 @@
     border: none;
     background: #32323218;
 }
+.formContainer form .imgUpload {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: -25px;
+    position: relative;
+}
+.formContainer form .imgUpload>input {
+    position: absolute;
+    width: 135px;
+    height: 45px;
+    border: 1px solid white;
+    cursor: pointer;
+    opacity: 0;
+}
+.formContainer form .imgUpload>button {
+    margin-bottom: 0px;
+}
 .formContainer form .checkField {
     margin-bottom: 25px;
     display: flex;
