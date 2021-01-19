@@ -77,7 +77,6 @@ export const createProduct = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post("/api/products", {}, config);
-
     dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: CREATE_PRODUCT_FAIL, payload: err.message });

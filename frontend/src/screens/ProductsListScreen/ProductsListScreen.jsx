@@ -6,15 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   listProducts,
   deleteProduct,
-  clearDeleteMsg
+  clearDeleteMsg,
+  createProduct,
 } from "../../redux/actions/productActions";
 import styles from "./ProductsListScreen.module.css";
+import { CREATE_PRODUCT_RESET } from "../../redux/types/productTypes";
 
 const ProductsListScreen = ({ history }) => {
   const dispatch = useDispatch();
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo, error } = userLogin;
 
   const productList = useSelector((state) => state.productList);
   const {
@@ -30,20 +29,44 @@ const ProductsListScreen = ({ history }) => {
     error: deleteError,
   } = deleteProductState;
 
+  const createdProduct = useSelector((state) => state.createProduct);
+  const {
+    product: newProduct,
+    success: createSuccess,
+    loading: createLoading,
+    error: createError,
+  } = createdProduct;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: CREATE_PRODUCT_RESET });
+
+    if (!userInfo.isAdmin) {
       history.push("/login");
     }
-  }, [dispatch, history, message]);
 
+    if (createSuccess) {
+      history.push(`/admin/product/${newProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [dispatch, history, userInfo, message, createSuccess, newProduct]);
+
+  const addNewProduct = (e) => {
+    e.preventDefault();
+    dispatch(createProduct());
+  };
+  
   return (
     <div className={styles.container}>
       <div className={styles.topContainer}>
         <h1>Products</h1>
-        <button>Add new product</button>
+        <button onClick={addNewProduct}>Add new product</button>
       </div>
+
+      {createLoading ? <Loader width="15px" /> : null}
       {deleteLoading ? (
         <Loader width="30px" />
       ) : message ? (
