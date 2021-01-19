@@ -10,6 +10,7 @@ import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAIL,
+  USER_PROFILE_RESET,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
@@ -60,6 +61,7 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: CLEAR_USERS })
   dispatch({ type: EDIT_USER_RESET })
+  dispatch({ type: USER_PROFILE_RESET })
 };
 
 // REGISTER

@@ -17,11 +17,11 @@ const UpdateProfileScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const userProfile = useSelector((state) => state.userProfile);
-  const { user, loading, error } = userProfile;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userProfile = useSelector((state) => state.userProfile);
+  const { user, loading, error } = userProfile;
 
   const updateProfile = useSelector((state) => state.updateProfile);
   const { success, updatedUser } = updateProfile;
@@ -51,7 +51,6 @@ const UpdateProfileScreen = ({ history }) => {
     e.preventDefault();
     dispatch(updateUserProfile({ id: user._id, name, email, password }));
   };
-  console.log(orders);
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -100,9 +99,9 @@ const UpdateProfileScreen = ({ history }) => {
       {/* my orders */}
       <div className={styles.myOrdersContainer}>
         <h1>My orders</h1>
-        {myOrdersLoading ? (
+        {myOrdersLoading && !myOrders ? (
           <Loader width="50px" />
-        ) : orders.myOrders.length === 0 ? (
+        ) : myOrders.length === 0 ? (
           <Message variant="error" text="No Orders" />
         ) : (
           orders.myOrders.map((item) => (
