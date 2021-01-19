@@ -9,8 +9,8 @@ import {
   clearDeleteMsg,
   createProduct,
 } from "../../redux/actions/productActions";
-import styles from "./ProductsListScreen.module.css";
 import { CREATE_PRODUCT_RESET } from "../../redux/types/productTypes";
+import styles from "./ProductsListScreen.module.css";
 
 const ProductsListScreen = ({ history }) => {
   const dispatch = useDispatch();
