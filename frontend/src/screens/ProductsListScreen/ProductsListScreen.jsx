@@ -81,7 +81,7 @@ const ProductsListScreen = ({ history }) => {
               <td>{product.category}</td>
               <td>{product.brand}</td>
               <td>
-                <Link to={`/product/${product._id}/edit`}>
+                <Link to={`/admin/product/${product._id}/edit`}>
                   <i className="fas fa-edit" style={{ color: "green" }}></i>
                 </Link>
               </td>

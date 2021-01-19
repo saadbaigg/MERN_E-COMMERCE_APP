@@ -4,55 +4,48 @@ import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails, editUser, clearEditMsg } from "../../redux/actions/userActions";
-import styles from "./EditUserScreen.module.css";
+import styles from "./EditProductScreen.module.css";
 
-const EditUserScreen = ({ history, match }) => {
+const EditProductScreen = ({ history, match }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [brand, setBrand] = useState("");
+  const [countInStock, setCountInStock] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
 
-  const userProfile = useSelector((state) => state.userProfile);
-  const { user, loading: profileLoading, error: profileError } = userProfile;
+  // const userProfile = useSelector((state) => state.userProfile);
+  // const { user, loading: profileLoading, error: profileError } = userProfile;
 
-  const updatedUser = useSelector((state) => state.editUser);
-  const {
-    user: editedUser,
-    success: editSuccess,
-    loading: editLoading,
-    error: editError,
-  } = updatedUser;
+  // const updatedUser = useSelector((state) => state.editUser);
+  // const {
+  //   user: editedUser,
+  //   success: editSuccess,
+  //   loading: editLoading,
+  //   error: editError,
+  // } = updatedUser;
 
   useEffect(() => {
-    if (!user.name || user._id !== match.params.id) {
-      dispatch(getUserDetails(match.params.id));
-    } else {
-      setName(user.name);
-      setEmail(user.email);
-      setIsAdmin(user.isAdmin);
-    }
-  }, [dispatch, history, match, user]);
+    // if (!user.name || user._id !== match.params.id) {
+    // } else {
+    // }
+  }, [dispatch, history, match]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      editUser({
-        _id: user._id,
-        name,
-        email,
-        isAdmin,
-      })
-    );
   };
-console.log(isAdmin)
+
   return (
     <div className={styles.container}>
       <div className={styles.subContainer}>
-        {editLoading ? (
+        {/* {editLoading ? (
           <Loader width="30px" />
         ) : editSuccess ? (
           <Message variant="success" onClick={() => dispatch(clearEditMsg())} text="User Updated Successfully" />
@@ -62,10 +55,10 @@ console.log(isAdmin)
         {profileLoading ? (
           <div>
             <Loader />
-          </div>
-        ) : (
+          </div> */}
+        {/* ) : ( */}
           <div className={styles.formContainer}>
-            <h1>Edit user</h1>
+            <h1>Edit Product</h1>
             <form>
               <div className={styles.field}>
                 <label>Name</label>
@@ -73,38 +66,77 @@ console.log(isAdmin)
                   type="text"
                   name="name"
                   value={name}
-                  placeholder="Enter Name"
                   autoComplete="off"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className={styles.field}>
-                <label>Email Address</label>
+                <label>Price</label>
                 <input
                   type="text"
-                  name="email"
-                  value={email}
-                  placeholder="Enter Email"
+                  name="price"
+                  value={price}
                   autoComplete="off"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
-              <div className={styles.checkField}>
+              <div className={styles.field}>
+                <label>Image</label>
                 <input
-                  type="checkbox"
-                  name="check"
-                  value={isAdmin}
-                  onChange={(e) => setIsAdmin(!isAdmin)}
+                  type="text"
+                  name="image"
+                  value={image}
+                  autoComplete="off"
+                  onChange={(e) => setImage(e.target.value)}
                 />
-                {user.isAdmin ? <label>Remove Admin</label> : <label>Make {user.name} Admin</label>}
+              </div>
+              <div className={styles.field}>
+                <label>Brand</label>
+                <input
+                  type="text"
+                  name="brand"
+                  value={brand}
+                  autoComplete="off"
+                  onChange={(e) => setBrand(e.target.value)}
+                />
+              </div>
+              <div className={styles.field}>
+                <label>Count in Stock</label>
+                <input
+                  type="text"
+                  name="countInStock"
+                  value={countInStock}
+                  autoComplete="off"
+                  onChange={(e) => setCountInStock(e.target.value)}
+                />
+              </div>
+              <div className={styles.field}>
+                <label>Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={category}
+                  autoComplete="off"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </div>
+              <div className={styles.field}>
+                <label>Description</label>
+                <input
+                  type="text"
+                  name="description"
+                  value={description}
+                  autoComplete="off"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
               </div>
               <button onClick={handleSubmit}>Update</button>
             </form>
           </div>
-        )}
+        {/* )} */}
       </div>
     </div>
   );
 };
 
-export default EditUserScreen;
+export default EditProductScreen;
