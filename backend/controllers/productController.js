@@ -79,7 +79,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.description = description
     product.price = price
     product.countInStock = countInStock
-    product.numReviews = numReviews
+    // product.numReviews = numReviews
 
     const updatedProduct = await product.save()
     res.json(updatedProduct)

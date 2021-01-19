@@ -4,7 +4,7 @@ import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./EditProductScreen.module.css";
-import { listProductDetails } from "../../redux/actions/productActions";
+import { listProductDetails, updateProduct } from "../../redux/actions/productActions";
 
 const EditProductScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -23,6 +23,9 @@ const EditProductScreen = ({ history, match }) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
 
+  const updatedProductState = useSelector((state) => state.updateProduct);
+  const { updatedProduct, success, loading:updateLoading, error:updateError } = updatedProductState;
+
   useEffect(() => {
     if(!product.name || product._id !== match.params.id) {
       dispatch(listProductDetails(match.params.id))
@@ -39,23 +42,36 @@ const EditProductScreen = ({ history, match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateProduct({
+      _id: product._id,
+      name,
+      price,
+      image,
+      brand,
+      countInStock,
+      category,
+      description
+    }))
   };
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.subContainer}>
-        {/* {editLoading ? (
+        {/* {loading ? (
           <Loader width="30px" />
         ) : editSuccess ? (
-          <Message variant="success" onClick={() => dispatch(clearEditMsg())} text="User Updated Successfully" />
+          <Message variant="success" text="User Updated Successfully" />
         ) : editError ? (
-          <Message variant="error" onClick={() => dispatch(clearEditMsg())} text="Something's wrong" />
-        ) : null}
-        {profileLoading ? (
+          <Message variant="error"text="Something's wrong" />
+        ) : null} */}
+        { updateLoading ? <Loader /> : null }
+        { success ? <Message variant="success" text="Product Updated Successfully" /> : null }
+        { updateError ? <Message variant="error" text="Something's wrong" /> : null }
+        {loading ? (
           <div>
             <Loader />
-          </div> */}
-        {/* ) : ( */}
+          </div> 
+         ) : (
         <div className={styles.formContainer}>
           <h1>Edit Product</h1>
           <form>
@@ -132,7 +148,7 @@ const EditProductScreen = ({ history, match }) => {
             <button onClick={handleSubmit}>Update</button>
           </form>
         </div>
-        {/* )} */}
+        )}
       </div>
     </div>
   );
