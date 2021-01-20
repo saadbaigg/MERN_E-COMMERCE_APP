@@ -12,6 +12,9 @@ import {
   GET_MY_ORDERS_REQUEST,
   GET_MY_ORDERS_SUCCESS,
   GET_MY_ORDERS_FAIL,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
+  GET_ALL_ORDERS_FAIL,
 } from "../types/orderTypes";
 
 export const orderReducer = (state = {}, action) => {
@@ -65,6 +68,19 @@ export const myOrdersReducer = (state = { myOrders: [] }, action) => {
     case GET_MY_ORDERS_SUCCESS:
       return { loading: false, success: true, myOrders: action.payload };
     case GET_MY_ORDERS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const allOrdersReducer = (state = { allOrders: [] }, action) => {
+  switch (action.type) {
+    case GET_ALL_ORDERS_REQUEST:
+      return { ...state, loading: true };
+    case GET_ALL_ORDERS_SUCCESS:
+      return { loading: false, success: true, allOrders: action.payload };
+    case GET_ALL_ORDERS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
