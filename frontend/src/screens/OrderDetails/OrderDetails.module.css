@@ -102,3 +102,21 @@
   cursor: pointer;
   border: none;
 }
+
+.rightContainer .markAsDeliveredBtn {
+  display: flex;
+  place-content: center;
+}
+.rightContainer .markAsDeliveredBtn > button {
+  color: black;
+  font-weight: bold;
+  background-color: #85f2be;
+  text-transform: uppercase;
+  width: 100%;
+  margin: 10px 15px 0px 15px;
+  padding: 15px 0px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: none;
+}

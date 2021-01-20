@@ -126,6 +126,9 @@ const OrderDetails = ({ match, history }) => {
                   <button onClick={pay}>Pay</button>
                 </span>
               </div>
+              <div className={styles.markAsDeliveredBtn}>
+                <button>Mark as delivered</button>
+              </div>
             </div>
           </div>
         </div>
