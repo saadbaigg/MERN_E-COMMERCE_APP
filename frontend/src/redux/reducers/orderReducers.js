@@ -16,6 +16,10 @@ import {
   GET_ALL_ORDERS_SUCCESS,
   GET_ALL_ORDERS_FAIL,
   GET_ALL_ORDERS_RESET,
+  ORDER_DELIVERED_REQUEST,
+  ORDER_DELIVERED_SUCCESS,
+  ORDER_DELIVERED_FAIL,
+  ORDER_DELIVERED_RESET,
 } from "../types/orderTypes";
 
 export const orderReducer = (state = {}, action) => {
@@ -84,6 +88,21 @@ export const allOrdersReducer = (state = { allOrders: [] }, action) => {
     case GET_ALL_ORDERS_FAIL:
       return { loading: false, error: action.payload };
     case GET_ALL_ORDERS_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const markAsDeliveredReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ORDER_DELIVERED_REQUEST:
+      return { loading: true };
+    case ORDER_DELIVERED_SUCCESS:
+      return { loading: false, success: true };
+    case ORDER_DELIVERED_FAIL:
+      return { loading: false, error: action.payload };
+    case ORDER_DELIVERED_RESET:
       return {};
     default:
       return state;

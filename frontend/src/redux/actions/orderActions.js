@@ -16,6 +16,9 @@ import {
   GET_ALL_ORDERS_REQUEST,
   GET_ALL_ORDERS_SUCCESS,
   GET_ALL_ORDERS_FAIL,
+  ORDER_DELIVERED_REQUEST,
+  ORDER_DELIVERED_SUCCESS,
+  ORDER_DELIVERED_FAIL,
 } from "../types/orderTypes";
 
 // Create order
@@ -124,5 +127,26 @@ export const getAllOrders = () => async (dispatch, getState) => {
     dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: GET_ALL_ORDERS_FAIL, payload: err.message });
+  }
+};
+
+// mark as delivered
+
+export const markAsDelivered = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_DELIVERED_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/orders/${id}/delivered`, config);
+
+    dispatch({ type: ORDER_DELIVERED_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: ORDER_DELIVERED_FAIL, payload: err.message });
   }
 };
