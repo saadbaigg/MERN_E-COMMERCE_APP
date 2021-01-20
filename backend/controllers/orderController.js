@@ -80,4 +80,17 @@ const getMyOrders = asyncHandler(async (req, res) => {
   res.status(200).json(order);
 });
 
-export { createOrder, getOrder, updateOrder, getMyOrders };
+// @desc     get all orders (only for admin)
+// @route    GET /api/orders
+// @access   Private
+const getAllOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate("user", "name email");
+
+  if (orders) {
+    res.status(200).json(orders);
+  } else {
+    res.status(404).json({ message: "No orders found" });
+  }
+});
+
+export { createOrder, getOrder, updateOrder, getMyOrders, getAllOrders };
