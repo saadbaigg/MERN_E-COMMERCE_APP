@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrder, markAsDelivered, updateOrder } from "../../redux/actions/orderActions";
+import {
+  getOrder,
+  markAsDelivered,
+  updateOrder,
+} from "../../redux/actions/orderActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./OrderDetails.module.css";
@@ -9,14 +13,15 @@ const OrderDetails = ({ match, history }) => {
   const dispatch = useDispatch();
   const orderId = match.params.id;
 
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { success, order, error, loading } = orderDetails;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, payment } = cart;
 
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { success, order, error, loading } = orderDetails;
 
   const itemsPrice = Number(
     cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
@@ -45,11 +50,11 @@ const OrderDetails = ({ match, history }) => {
   } = markAsDeliveredState;
 
   useEffect(() => {
-    if(!userInfo) {
-      history.push('/login')
+    if (!userInfo) {
+      history.push("/login");
     }
     dispatch(getOrder(orderId));
-  }, [dispatch, orderId, paySuccess, history, deliverySuccess]);
+  }, [dispatch, orderId, userInfo, paySuccess, history, deliverySuccess]);
 
   const pay = (e) => {
     e.preventDefault();
@@ -63,14 +68,14 @@ const OrderDetails = ({ match, history }) => {
     );
   };
 
-  const deliveryHandler = e => {
-    e.preventDefault()
-    dispatch(markAsDelivered(orderId))
-  }
-  console.log(markAsDeliveredState)
+  const deliveryHandler = (e) => {
+    e.preventDefault();
+    dispatch(markAsDelivered(orderId));
+  };
+  
   return (
     <>
-      {loading ? (
+      { !order ? (
         <Loader />
       ) : (
         <div className={styles.mainContainer}>
@@ -139,12 +144,13 @@ const OrderDetails = ({ match, history }) => {
                   <button onClick={pay}>Pay</button>
                 </span>
               </div>
-              <div className={styles.markAsDeliveredBtn}>
-                <button 
-                onClick={deliveryHandler} 
-                disabled={deliverySuccess}
-                >Mark as delivered</button>
-              </div>
+              { userInfo && userInfo.isAdmin ? (
+                <div className={styles.markAsDeliveredBtn}>
+                  <button onClick={deliveryHandler} disabled={deliverySuccess}>
+                    Mark as delivered
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
