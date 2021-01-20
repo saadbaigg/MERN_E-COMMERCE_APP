@@ -38,6 +38,7 @@ const OrdersListScreen = ({ history }) => {
           <tr className={styles.headingRow}>
             <th>ID</th>
             <th>DATE</th>
+            <th>ORDERED BY</th>
             <th>TOTAL</th>
             <th>PAID</th>
             <th>DELIVERED</th>
@@ -47,6 +48,7 @@ const OrdersListScreen = ({ history }) => {
             <tr className={styles.dataRow}>
               <td>{order._id}</td>
               <td>{order.createdAt}</td>
+              <td>{order.user.name}</td>
               <td>${order.totalPrice}</td>
               <td>
                 {order.isPaid ? (
@@ -63,9 +65,9 @@ const OrdersListScreen = ({ history }) => {
                 )}
               </td>
               <td>
-                {/* <Link to={`/admin/product/${product._id}/edit`}> */}
-                <i className="fas fa-edit" style={{ color: "green" }}></i>
-                {/* </Link> */}
+                <Link to={`/orders/${order._id}`}>
+                <button className={styles.detailsBtn}>details</button>
+                </Link>
               </td>
             </tr>
           ))}

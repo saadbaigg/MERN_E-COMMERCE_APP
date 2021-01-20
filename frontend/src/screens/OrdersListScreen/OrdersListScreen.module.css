@@ -8,15 +8,6 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.topContainer button {
-    border-radius: 3px;
-    padding: 15px 40px;
-    background: var(--primary-color);
-    border: none;
-    color: #ffffff;
-    text-transform: uppercase;
-    cursor: pointer;
-}
 .container i:hover {
     cursor: pointer;
 }
@@ -47,4 +38,14 @@
     text-align: left;
     padding: 15px 10px;
     border: 1px solid rgba(0, 0, 0, 0.122);
+}
+.detailsBtn {
+    border-radius: 20px;
+    padding: 8px 20px;
+    background: var(--primary-color);
+    border: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    cursor: pointer;    
+    font-size: 10px;
 }
