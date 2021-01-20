@@ -25,6 +25,7 @@ const Header = () => {
           <div className={styles.dropdownContent}>
             <Link to="/userslist">Users</Link>
             <Link to="/admin/productslist">Products</Link>
+            <Link to="/admin/orderslist">Orders</Link>
           </div>
         </div>
       ) : null}

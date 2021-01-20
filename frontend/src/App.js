@@ -18,6 +18,7 @@ import EditProductScreen from "./screens/EditProductScreen/EditProductScreen";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styles from "./App.module.css";
+import OrdersListScreen from "./screens/OrdersListScreen/OrdersListScreen";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
       <Header />
       <main className={styles.main}>
         {/* private routes (admin) */}
+        <Route path="/admin/orderslist" component={OrdersListScreen} />
         <Route path="/admin/productslist" component={ProductsListScreen} />
         <Route path="/admin/product/:id/edit" component={EditProductScreen} />
         <Route path="/userslist" component={UserListScreen} />
