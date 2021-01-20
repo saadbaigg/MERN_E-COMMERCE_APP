@@ -13,8 +13,8 @@ import {
 router.post("/", protect, createOrder);
 router.get("/myorders", protect, getMyOrders);
 router.get("/:id", protect, getOrder);
-router.put("/:id/pay", protect, updateOrder);
-router.put("/:id/delivered", protect, markAsDelivered);
 router.get("/", protect, admin, getAllOrders);
+router.put("/:id/pay", protect, updateOrder);
+router.put("/:id/delivered", protect, admin, markAsDelivered);
 
 export default router;

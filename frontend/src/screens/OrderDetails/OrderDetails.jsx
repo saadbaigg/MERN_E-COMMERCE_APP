@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrder, updateOrder } from "../../redux/actions/orderActions";
+import { getOrder, markAsDelivered, updateOrder } from "../../redux/actions/orderActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./OrderDetails.module.css";
@@ -37,12 +37,19 @@ const OrderDetails = ({ match, history }) => {
     loading: payLoading,
   } = updatedOrder;
 
+  const markAsDeliveredState = useSelector((state) => state.markAsDelivered);
+  const {
+    success: deliverySuccess,
+    error: deliveryError,
+    loading: deliveryLoading,
+  } = markAsDeliveredState;
+
   useEffect(() => {
     if(!userInfo) {
       history.push('/login')
     }
     dispatch(getOrder(orderId));
-  }, [dispatch, orderId, paySuccess, history]);
+  }, [dispatch, orderId, paySuccess, history, deliverySuccess]);
 
   const pay = (e) => {
     e.preventDefault();
@@ -55,6 +62,12 @@ const OrderDetails = ({ match, history }) => {
       })
     );
   };
+
+  const deliveryHandler = e => {
+    e.preventDefault()
+    dispatch(markAsDelivered(orderId))
+  }
+  console.log(markAsDeliveredState)
   return (
     <>
       {loading ? (
@@ -127,7 +140,10 @@ const OrderDetails = ({ match, history }) => {
                 </span>
               </div>
               <div className={styles.markAsDeliveredBtn}>
-                <button>Mark as delivered</button>
+                <button 
+                onClick={deliveryHandler} 
+                disabled={deliverySuccess}
+                >Mark as delivered</button>
               </div>
             </div>
           </div>

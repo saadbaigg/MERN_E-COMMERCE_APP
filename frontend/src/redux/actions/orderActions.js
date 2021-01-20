@@ -90,6 +90,27 @@ export const updateOrder = (id, paymentResult) => async (
   }
 };
 
+// mark as delivered
+
+export const markAsDelivered = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_DELIVERED_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/orders/${id}/delivered`, {}, config);
+
+    dispatch({ type: ORDER_DELIVERED_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: ORDER_DELIVERED_FAIL, payload: err.message });
+  }
+};
+
 // get my orders
 
 export const getMyOrders = () => async (dispatch, getState) => {
@@ -130,23 +151,3 @@ export const getAllOrders = () => async (dispatch, getState) => {
   }
 };
 
-// mark as delivered
-
-export const markAsDelivered = (id) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: ORDER_DELIVERED_REQUEST });
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.put(`/api/orders/${id}/delivered`, config);
-
-    dispatch({ type: ORDER_DELIVERED_SUCCESS, payload: data });
-  } catch (err) {
-    dispatch({ type: ORDER_DELIVERED_FAIL, payload: err.message });
-  }
-};

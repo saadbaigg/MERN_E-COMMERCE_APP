@@ -44,9 +44,9 @@ const reducer = combineReducers({
   order: orderReducer,
   orderDetails: orderDetailsReducer,
   updateOrder: updateOrderReducer,
+  markAsDelivered: markAsDeliveredReducer,
   myOrders: myOrdersReducer,
   allOrders: allOrdersReducer,
-  markAsDelivered: markAsDeliveredReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

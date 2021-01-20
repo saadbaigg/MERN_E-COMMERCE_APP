@@ -72,6 +72,24 @@ const updateOrder = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc     mark as delivered
+// @route    PUT /api/order/:id/delivered
+// @access   Private
+const markAsDelivered = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+
+    const updatedOrder = await order.save();
+
+    res.json(updatedOrder);
+  } else {
+    res.status(404).json({ message: "No order found" });
+  }
+});
+
 // @desc     get my orders
 // @route    GET /api/myorders
 // @access   Private
@@ -93,22 +111,5 @@ const getAllOrders = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc     mark as delivered
-// @route    PUT /api/order/:id/delivered
-// @access   Private
-const markAsDelivered = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id);
 
-  if (order) {
-    order.isDelivered = true;
-    order.deliveredAt = Date.now();
-
-    const updatedOrder = await order.save();
-
-    res.json(updatedOrder);
-  } else {
-    res.status(404).json({ message: "No order found" });
-  }
-});
-
-export { createOrder, getOrder, updateOrder, getMyOrders, getAllOrders, markAsDelivered };
+export { createOrder, getOrder, updateOrder, markAsDelivered, getMyOrders, getAllOrders };
