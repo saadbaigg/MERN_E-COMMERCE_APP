@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GET_ALL_ORDERS_RESET } from "../types/orderTypes";
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -59,9 +60,10 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT });
   localStorage.removeItem("userInfo");
-  dispatch({ type: CLEAR_USERS })
-  dispatch({ type: EDIT_USER_RESET })
-  dispatch({ type: USER_PROFILE_RESET })
+  dispatch({ type: CLEAR_USERS });
+  dispatch({ type: EDIT_USER_RESET });
+  dispatch({ type: USER_PROFILE_RESET });
+  dispatch({ type: GET_ALL_ORDERS_RESET });
 };
 
 // REGISTER
@@ -124,7 +126,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put('/api/users/profile', user, config);
+    const { data } = await axios.put("/api/users/profile", user, config);
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (err) {
@@ -174,7 +176,8 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
 // CLEAR DELETE MESSAGE
 
-export const clearDeleteMsg = () => async (dispatch) => dispatch({ type: CLEAR_DELETE_USER_MESSAGE });
+export const clearDeleteMsg = () => async (dispatch) =>
+  dispatch({ type: CLEAR_DELETE_USER_MESSAGE });
 
 // EDIT USER
 
@@ -201,4 +204,5 @@ export const editUser = (user) => async (dispatch, getState) => {
 
 // CLEAR EDIT MESSAGES
 
-export const clearEditMsg = () => async (dispatch) => dispatch({ type: EDIT_USER_RESET });
+export const clearEditMsg = () => async (dispatch) =>
+  dispatch({ type: EDIT_USER_RESET });

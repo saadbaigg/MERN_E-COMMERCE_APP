@@ -16,11 +16,12 @@ const OrdersListScreen = ({ history }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-
-    if (!userInfo.isAdmin) {
-      history.push("/login");
-    } else {
-      dispatch(getAllOrders());
+    if (userInfo) {
+      if (!userInfo && !userInfo.isAdmin) {
+        history.push("/login");
+      } else {
+        dispatch(getAllOrders());
+      }
     }
   }, [dispatch, history, userInfo]);
 
@@ -29,28 +30,10 @@ const OrdersListScreen = ({ history }) => {
       <div className={styles.topContainer}>
         <h1>Orders</h1>
       </div>
-
-      {/* {createLoading ? <Loader width="15px" /> : null}
-      {deleteLoading ? (
-        <Loader width="30px" />
-      ) : message ? (
-        <Message
-          variant="success"
-          text={message.message}
-          onClick={() => dispatch(clearDeleteMsg())}
-        />
-      ) : null}
-      {deleteError ? (
-        <Message
-          variant="success"
-          text="Something's wrong"
-          onClick={() => dispatch(clearDeleteMsg())}
-        />
-      ) : null} */}
-
+      {ordersError && <Message variant="error" text="Something's Wrong" />}
       {ordersLoading ? (
         <Loader width="50px" />
-      ) : (
+      ) : !allOrders ? null : (
         <table>
           <tr className={styles.headingRow}>
             <th>ID</th>

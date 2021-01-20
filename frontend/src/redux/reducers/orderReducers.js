@@ -15,6 +15,7 @@ import {
   GET_ALL_ORDERS_REQUEST,
   GET_ALL_ORDERS_SUCCESS,
   GET_ALL_ORDERS_FAIL,
+  GET_ALL_ORDERS_RESET,
 } from "../types/orderTypes";
 
 export const orderReducer = (state = {}, action) => {
@@ -82,6 +83,8 @@ export const allOrdersReducer = (state = { allOrders: [] }, action) => {
       return { loading: false, success: true, allOrders: action.payload };
     case GET_ALL_ORDERS_FAIL:
       return { loading: false, error: action.payload };
+    case GET_ALL_ORDERS_RESET:
+      return {};
     default:
       return state;
   }
