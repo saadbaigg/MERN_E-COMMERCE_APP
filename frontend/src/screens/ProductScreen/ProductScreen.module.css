@@ -1,87 +1,179 @@
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .container hr {
-    border: 1px solid rgba(0, 0, 0, 0.122);
+  border: 1px solid rgba(0, 0, 0, 0.122);
 }
 .goBack {
-    margin: 30px 0px;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
+  margin: 30px 0px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
 }
 .subContainer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 .imgContainer {
-    flex: 0 1 45%;
+  flex: 0 1 45%;
 }
 .imgContainer img {
-    width: 100%;
-    height: 330px;
+  width: 100%;
+  height: 330px;
 }
 .textContainer {
-    flex: 0 1 25%;
-    display: flex;
-    flex-direction: column;
-    margin: 30px 0px 0px 0px;
+  flex: 0 1 25%;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0px 0px 0px;
 }
 .textContainer h1 {
-    color: var(--primary-color);
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    font-size: 28px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-size: 28px;
 }
 .ratingContainer {
-    margin: 10px 0px;
+  margin: 10px 0px;
 }
 .price {
-    margin: 10px 0px;
-    font-weight: bold;
+  margin: 10px 0px;
+  font-weight: bold;
 }
 .description {
-    margin: 10px 0px;
-    width: 240px;
-    font-size: 15px;
-    line-height: 24px;
+  margin: 10px 0px;
+  width: 240px;
+  font-size: 15px;
+  line-height: 24px;
 }
 .finalContainer {
-    border: 1px solid rgba(0, 0, 0, 0.192);
-    flex: 0 1 23%;
+  border: 1px solid rgba(0, 0, 0, 0.192);
+  flex: 0 1 23%;
 }
-.finalContainer>span {
+.finalContainer > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+.finalContainer > span:nth-child(1) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+}
+
+.finalContainer > span:nth-child(2) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+}
+.finalContainer > span:nth-child(3) > select {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.192);
+  background: none;
+  cursor: pointer;
+}
+.finalContainer > span:nth-child(4) {
+  place-content: center;
+}
+
+.finalContainer > span > button {
+  color: #ffffff;
+  background-color: black;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 10px 0px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+}
+
+.reviewSection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.reviewSection hr {
+    margin: 15px 0px 15px 5px;
+}
+.reviewSectionTop {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
+    margin-bottom: 20px;
 }
-.finalContainer>span:nth-child(1) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+.reviewSectionTop h2 {
+    color: var(--primary-color);
+    text-transform: uppercase;
 }
-
-.finalContainer>span:nth-child(2) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.192);
-}
-.finalContainer>span:nth-child(3)>select {
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.192);
-    background: none;
-    cursor: pointer;
-}
-.finalContainer>span:nth-child(4) {
-    place-content: center;
-}
-
-.finalContainer>span>button {
+.reviewSectionTop button {
     color: #ffffff;
     background-color: black;
     text-transform: uppercase;
-    width: 100%;
-    padding: 10px 0px;
-    font-size: 12px;
+    padding: 8px 20px;
+    font-size: 10px;
     cursor: pointer;
     border: none;
+    margin-left: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.reviewSection .review {
+    margin-left: 5px;
+}
+.reviewSection .review p {
+    margin-bottom: 10px;
+}
+.reviewSection .review p:nth-child(1) {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.reviewSection .review p:nth-child(2) {
+    font-style: italic;
+}
+
+
+
+
+
+
+
+.selectDropdown,
+.selectDropdown * {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  width: 200px;
+}
+.selectDropdown {
+  position: relative;
+  background-color: #e6e6e6;
+  border-radius: 4px;
+}
+.selectDropdown select {
+  font-size: 14px;
+  font-weight: normal;
+  max-width: 100%;
+  padding: 8px 24px 8px 10px;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.selectDropdown select:active,
+.selectDropdown select:focus {
+  outline: none;
+  box-shadow: none;
+}
+.selectDropdown:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-top: 5px solid #aaa;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
 }

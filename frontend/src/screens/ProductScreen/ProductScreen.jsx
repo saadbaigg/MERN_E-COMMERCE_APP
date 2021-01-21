@@ -34,9 +34,9 @@ const ProductScreen = ({ history, match }) => {
     arr.push(i + 1);
   }
 
-  const handleCartSubmitHandler = e => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
-  }
+  const handleCartSubmitHandler = (e) => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
 
   return (
     <div className={styles.container}>
@@ -83,15 +83,51 @@ const ProductScreen = ({ history, match }) => {
               </span>
             )}
             <span>
-              <button 
-              onClick={handleCartSubmitHandler}
-              disabled={countInStock <= 0}>Add to cart</button>
+              <button
+                onClick={handleCartSubmitHandler}
+                disabled={countInStock <= 0}
+              >
+                Add to cart
+              </button>
             </span>
           </div>
         </div>
       )}
+      <div className={styles.reviewSection}>
+        <div className={styles.reviewSectionTop}>
+          <h2>Product Reviews</h2>
+          <button>Write review</button>
+        </div>
+        <div className={styles.review}>
+          <p>John doe</p>
+          <p>A very good product</p>
+          <Rating value={5} text="rating" />
+        </div>
+        <hr />
+        <div className={styles.review}>
+          <p>Jane doe</p>
+          <p>A very bad product</p>
+          <Rating value={1} text="rating" />
+        </div>
+        <hr />
+      </div>
     </div>
   );
 };
 
 export default ProductScreen;
+
+
+
+
+
+
+        {/* <div className={styles.selectDropdown}>
+          <select>
+            <option value="1">Poor</option>
+            <option value="2">Fair</option>
+            <option value="3">Good</option>
+            <option value="4">Very Good</option>
+            <option value="5">Excellent</option>
+          </select>
+        </div> */}
