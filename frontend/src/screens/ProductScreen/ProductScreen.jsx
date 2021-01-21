@@ -2,22 +2,35 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "../../components/Rating/Rating";
-import { listProductDetails } from "../../redux/actions/productActions";
+import {
+  addProductReview,
+  listProductDetails,
+} from "../../redux/actions/productActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./ProductScreen.module.css";
 import Modal from "../../components/Modal/Modal";
 
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
+  const [qty, setQty] = useState(1);
+
+  const [productRating, setProductRating] = useState("");
+  const [productComment, setProductComment] = useState("");
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const productReview = useSelector((state) => state.productReview);
+  const {
+    loading: reviewLoading,
+    error: reviewError,
+    success: reviewSuccess,
+  } = productReview;
+
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match]);
+  }, [dispatch, match, reviewSuccess]);
 
   const {
     name,
@@ -27,6 +40,7 @@ const ProductScreen = ({ history, match }) => {
     rating,
     numReviews,
     countInStock,
+    reviews,
   } = product;
 
   var arr = [];
@@ -40,6 +54,20 @@ const ProductScreen = ({ history, match }) => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleChange = (e) => {
+    if (e.target.name === "dropdown") {
+      setProductRating(e.target.value);
+    } else {
+      setProductComment(e.target.value);
+    }
+  };
+
+  const submitReview = (e) => {
+    e.preventDefault();
+    dispatch(addProductReview(match.params.id, productRating, productComment));
+    setIsOpen(true)
+  };
 
   return (
     <div className={styles.container}>
@@ -101,20 +129,31 @@ const ProductScreen = ({ history, match }) => {
           <h2>Product Reviews</h2>
           <button onClick={() => setIsOpen(true)}>Write review</button>
         </div>
-        <div className={styles.review}>
-          <p>John doe</p>
-          <p>A very good product</p>
-          <Rating value={5} text="rating" />
-        </div>
-        <hr />
-        <div className={styles.review}>
-          <p>Jane doe</p>
-          <p>A very bad product</p>
-          <Rating value={1} text="rating" />
-        </div>
-        <hr />
+        {!reviews ? (
+          <Loader width="30px" />
+        ) : reviews.length === 0 ? (
+          <p>No Reviews for this Product</p>
+        ) : (
+          reviews.map((review) => (
+            <>
+              <div key={review._id} className={styles.review}>
+                <p>{review.name}</p>
+                <p>{review.comment}</p>
+                <Rating value={review.rating} text="rating" />
+              </div>
+              <hr />
+            </>
+          ))
+        )}
       </div>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onChange={handleChange}
+        onClick={submitReview}
+        comment={productComment}
+        rating={productRating}
+      />
     </div>
   );
 };

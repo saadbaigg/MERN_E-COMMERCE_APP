@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ isOpen, setIsOpen }) => {
+const Modal = ({
+  isOpen,
+  setIsOpen,
+  onChange,
+  onClick,
+  comment,
+  rating,
+}) => {
   return (
     <div className={styles.container}>
       <div
@@ -24,7 +31,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
             <div className={styles.field}>
               <label>Rating</label>
               <div className={styles.selectDropdown}>
-                <select>
+                <select onChange={onChange} value={rating} name="dropdown">
                   <option value="1">Poor</option>
                   <option value="2">Fair</option>
                   <option value="3">Good</option>
@@ -38,15 +45,15 @@ const Modal = ({ isOpen, setIsOpen }) => {
               <input
                 type="text"
                 name="comment"
-                // value={comment}
+                value={comment}
                 placeholder="Enter Your Comment"
                 autoComplete="off"
-                // onChange={(e) => setEmail(e.target.value)}
+                onChange={onChange}
               />
             </div>
             <div className={styles.btnContainer}>
               <button onClick={() => setIsOpen(false)}>Close</button>
-              <button>Submit</button>
+              <button onClick={onClick}>Submit</button>
             </div>
           </div>
         </div>
