@@ -7,11 +7,13 @@ import {
   deleteProduct,
   addProduct,
   updateProduct,
+  addProductReview,
 } from "../controllers/productController.js";
 
 router.get("/", getProducts);
 router.get("/:id", getProductById);
 router.delete("/:id", protect, admin, deleteProduct);
+router.post("/:id/review", protect, addProductReview);
 router.post("/", protect, admin, addProduct);
 router.put("/:id", protect, admin, updateProduct);
 

@@ -16,6 +16,9 @@ import {
   UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAIL,
+  ADD_REVIEW_REQUEST,
+  ADD_REVIEW_SUCCESS,
+  ADD_REVIEW_FAIL,
 } from "../types/productTypes";
 
 export const listProducts = () => async (dispatch) => {
@@ -64,7 +67,8 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
 // CLEAR DELETE MESSAGE
 
-export const clearDeleteMsg = () => async (dispatch) => dispatch({ type: CLEAR_DELETE_PRODUCT_MESSAGE });
+export const clearDeleteMsg = () => async (dispatch) =>
+  dispatch({ type: CLEAR_DELETE_PRODUCT_MESSAGE });
 
 // CREATE PRODUCT
 
@@ -74,7 +78,7 @@ export const createProduct = () => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
       },
     };
@@ -94,14 +98,45 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
       },
     };
 
-    const { data } = await axios.put(`/api/products/${product._id}`, product, config);
+    const { data } = await axios.put(
+      `/api/products/${product._id}`,
+      product,
+      config
+    );
     dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
   } catch (err) {
     dispatch({ type: UPDATE_PRODUCT_FAIL, payload: err.message });
+  }
+};
+
+// ADD REVIEW
+
+export const addProductReview = (id, rating, comment) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({ type: ADD_REVIEW_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().userLogin.userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `/api/products/${id}/review`,
+      { rating, comment },
+      config
+    );
+    dispatch({ type: ADD_REVIEW_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: ADD_REVIEW_FAIL, payload: err.message });
   }
 };
