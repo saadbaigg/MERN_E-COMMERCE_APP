@@ -1,0 +1,120 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+}
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.header h3 {
+  color: #333;
+}
+.header .close {
+  cursor: pointer;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.selectDropdown,
+.selectDropdown * {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  width: 200px;
+}
+.selectDropdown {
+  position: relative;
+  background: #32323218;
+  border-radius: 4px;
+}
+.selectDropdown select {
+  font-size: 14px;
+  font-weight: normal;
+  max-width: 100%;
+  padding: 10px 10px;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.selectDropdown select:active,
+.selectDropdown select:focus {
+  outline: none;
+  box-shadow: none;
+}
+.selectDropdown:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-top: 5px solid #aaa;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.field label {
+  margin-bottom: 10px;
+}
+.field input {
+  border-radius: 3px;
+  outline: none;
+  padding: 15px 10px;
+  border: none;
+  background: #32323218;
+}
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 5px;
+}
+.btnContainer button {
+  color: #ffffff;
+  background-color: black;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-out;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 70%;
+  }
+  .popup {
+    width: 70%;
+  }
+}

@@ -6,6 +6,7 @@ import { listProductDetails } from "../../redux/actions/productActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import styles from "./ProductScreen.module.css";
+import Modal from "../../components/Modal/Modal";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -37,6 +38,8 @@ const ProductScreen = ({ history, match }) => {
   const handleCartSubmitHandler = (e) => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -96,7 +99,7 @@ const ProductScreen = ({ history, match }) => {
       <div className={styles.reviewSection}>
         <div className={styles.reviewSectionTop}>
           <h2>Product Reviews</h2>
-          <button>Write review</button>
+          <button onClick={() => setIsOpen(true)}>Write review</button>
         </div>
         <div className={styles.review}>
           <p>John doe</p>
@@ -111,23 +114,9 @@ const ProductScreen = ({ history, match }) => {
         </div>
         <hr />
       </div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
 
 export default ProductScreen;
-
-
-
-
-
-
-        {/* <div className={styles.selectDropdown}>
-          <select>
-            <option value="1">Poor</option>
-            <option value="2">Fair</option>
-            <option value="3">Good</option>
-            <option value="4">Very Good</option>
-            <option value="5">Excellent</option>
-          </select>
-        </div> */}
