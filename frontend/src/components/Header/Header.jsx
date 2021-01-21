@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/userActions";
 import styles from "./Header.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ const Header = () => {
       <Link to="/">
         <h4>eSHOP</h4>
       </Link>
+
+      <SearchBar />
+
       <Link to="/cart">
         <p>cart</p>
       </Link>

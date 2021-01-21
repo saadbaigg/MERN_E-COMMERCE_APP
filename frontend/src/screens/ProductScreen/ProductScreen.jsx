@@ -66,7 +66,7 @@ const ProductScreen = ({ history, match }) => {
   const submitReview = (e) => {
     e.preventDefault();
     dispatch(addProductReview(match.params.id, productRating, productComment));
-    setIsOpen(true)
+    setIsOpen(false)
   };
 
   return (

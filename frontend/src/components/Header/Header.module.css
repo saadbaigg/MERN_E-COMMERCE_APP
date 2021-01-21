@@ -1,12 +1,12 @@
 .container {
-  padding: 30px 220px;
+  padding: 20px 220px;
   background-color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .container>a:nth-child(1) {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 }
 .container h4 {
   color: #ffffff;
