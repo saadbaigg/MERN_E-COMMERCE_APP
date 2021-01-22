@@ -7,10 +7,18 @@ import SearchBar from "../SearchBar/SearchBar";
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const [keyword, setKeyword] = useState("");
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    setIsOpen(false)
+  }
 
   return (
     <header className={styles.container}>
@@ -20,8 +28,8 @@ const Header = () => {
         </Link>
       </div>
       <div className={styles.rightContainer}>
-        <SearchBar isOpen={isOpen} />
-        <i className={styles.searchIcon + " fas fa-search"} onClick={() => setIsOpen(!isOpen)}></i>
+        <SearchBar isOpen={isOpen} keyword={keyword} setKeyword={setKeyword} onSubmit={handleSubmit} />
+        { !isOpen && <i className={styles.searchIcon + " fas fa-search"} onClick={() => setIsOpen(true)}></i>}
         <Link to="/cart">
           <p>cart</p>
         </Link>
