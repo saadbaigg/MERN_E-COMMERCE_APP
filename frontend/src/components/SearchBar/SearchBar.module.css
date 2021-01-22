@@ -1,16 +1,19 @@
 .container {
-    flex: 1 0 auto;
-    margin: 0px 90px 0px 90px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    transition: all 5s ease-in-out;
+    transition: opacity 500ms;
 }
 .container>input {
-    width: 68%;
-    padding: 8px 5px;
+    padding: 4px 5px;
     border-radius: 3px;
     outline: none;
     border: none;
+    background: transparent;
+    color: #ffffff9a;
+    border-bottom: 1px solid #ffffff9a;
+    width: 200px;
 }
 .container>button {
     width: 25%;
