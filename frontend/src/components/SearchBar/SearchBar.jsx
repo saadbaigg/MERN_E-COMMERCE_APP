@@ -20,7 +20,7 @@ const SearchBar = ({ isOpen, history, keyword, setKeyword, onSubmit }) => {
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
       />
-      <button onClick={onSubmit} >Search</button>
+      <button onClick={onSubmit}>Search</button>
     </div>
   );
 };

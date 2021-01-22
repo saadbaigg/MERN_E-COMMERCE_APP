@@ -20,10 +20,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import styles from "./App.module.css";
 import OrdersListScreen from "./screens/OrdersListScreen/OrdersListScreen";
 
-const App = () => {
+const App = ({ history }) => {
   return (
     <Router>
-      <Header />
+      <Route render={({ history }) => <Header history={history} />} />
       <main className={styles.main}>
         {/* private routes (admin) */}
         <Route path="/admin/orderslist" component={OrdersListScreen} />

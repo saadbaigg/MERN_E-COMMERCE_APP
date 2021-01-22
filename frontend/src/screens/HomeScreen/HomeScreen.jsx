@@ -6,14 +6,15 @@ import Product from "../../components/Product/Product";
 import { listProducts } from "../../redux/actions/productActions";
 import styles from "./HomeScreen.module.css";
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
+  const keyword = match.params.keyword
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listProducts(keyword));
   }, [dispatch]);
 
   return (

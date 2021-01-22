@@ -5,7 +5,7 @@ import { logout } from "../../redux/actions/userActions";
 import styles from "./Header.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 
-const Header = () => {
+const Header = ({ history }) => {
   const dispatch = useDispatch();
 
   const [keyword, setKeyword] = useState("");
@@ -17,6 +17,13 @@ const Header = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
+
+    if(!keyword.trim()) {
+      history.push('/')
+    } else {
+      history.push(`/search/${keyword}`)
+    }
+
     setIsOpen(false)
   }
 
