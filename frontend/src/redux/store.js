@@ -35,8 +35,8 @@ const reducer = combineReducers({
   createProduct: createProductReducer,
   updateProduct: updateProductReducer,
   cart: cartReducer,
-  userLogin: userLoginReducer,
   userProfile: userProfileReducer,
+  userLogin: userLoginReducer,
   updateProfile: updateProfileReducer,
   allUsers: allUsersReducer,
   deleteUser: deleteUserReducer,
@@ -65,6 +65,7 @@ const shippingFromStorage = localStorage.getItem("shipping")
 
 const initialState = {
   cart: { cartItems: cartItemsFromStorage, shipping: shippingFromStorage },
+  userProfile: { user: {} },
   userLogin: { userInfo: userInfoFromStorage },
 };
 

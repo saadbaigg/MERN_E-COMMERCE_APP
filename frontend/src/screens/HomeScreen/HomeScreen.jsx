@@ -8,7 +8,7 @@ import styles from "./HomeScreen.module.css";
 
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
-  const keyword = match.params.keyword
+  const keyword = match.params.keyword;
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -26,7 +26,7 @@ const HomeScreen = ({ match }) => {
             <Loader />
           </div>
         ) : error ? (
-          <Message text='some error' />
+          <Message text="some error" />
         ) : (
           products.map((item) => (
             <Product

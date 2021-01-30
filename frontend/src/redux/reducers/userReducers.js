@@ -52,7 +52,7 @@ export const userLoginReducer = (state = {}, action) => {
   }
 };
 
-export const userProfileReducer = (state = { loading: true, user: {} }, action) => {
+export const userProfileReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_PROFILE_REQUEST:
       return { ...state, loading: true };

@@ -17,21 +17,18 @@ const UpdateProfileScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   const userProfile = useSelector((state) => state.userProfile);
   const { user, loading, error } = userProfile;
 
+  
+  const orders = useSelector((state) => state.myOrders);
+  const { myOrders, loading: myOrdersLoading, error: myOrdersError } = orders;
+  
   const updateProfile = useSelector((state) => state.updateProfile);
   const { success, updatedUser } = updateProfile;
-
-  const orders = useSelector((state) => state.myOrders);
-  const {
-    success: myOrdersSuccess,
-    myOrders,
-    loading: myOrdersLoading,
-  } = orders;
+  
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
     if (!userInfo) {
@@ -99,41 +96,48 @@ const UpdateProfileScreen = ({ history }) => {
       {/* my orders */}
       <div className={styles.myOrdersContainer}>
         <h1>My orders</h1>
-        {myOrdersLoading && !myOrders ? (
+
+        {myOrdersLoading ? (
           <Loader width="50px" />
-        ) : myOrders.length === 0 ? (
-          <Message variant="error" text="No Orders" />
+        ) : myOrdersError ? (
+          <Message variant="error" text="some error" />
         ) : (
-          orders.myOrders.map((item) => (
+          myOrders.map((item) => (
             <Link to={`/orders/${item._id}`}>
-            <table>
-              <tr className={styles.headingRow}>
-                <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
-              </tr>
-              <tr className={styles.dataRow}>
-                <td>{item._id}</td>
-                <td>{item.createdAt}</td>
-                <td>{item.totalPrice}</td>
-                <td>
-                  {item.isPaid ? (
-                    <i className="fas fa-check" style={{ color: "green" }}></i>
-                  ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
-                  )}
-                </td>
-                <td>
-                  {item.isDelivered ? (
-                    <i className="fas fa-check" style={{ color: "green" }}></i>
-                  ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
-                  )}
-                </td>
-              </tr>
-            </table>
+              <table>
+                <tr className={styles.headingRow}>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>TOTAL</th>
+                  <th>PAID</th>
+                  <th>DELIVERED</th>
+                </tr>
+                <tr className={styles.dataRow}>
+                  <td>{item._id}</td>
+                  <td>{item.createdAt}</td>
+                  <td>{item.totalPrice}</td>
+                  <td>
+                    {item.isPaid ? (
+                      <i
+                        className="fas fa-check"
+                        style={{ color: "green" }}
+                      ></i>
+                    ) : (
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                    )}
+                  </td>
+                  <td>
+                    {item.isDelivered ? (
+                      <i
+                        className="fas fa-check"
+                        style={{ color: "green" }}
+                      ></i>
+                    ) : (
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                    )}
+                  </td>
+                </tr>
+              </table>
             </Link>
           ))
         )}
