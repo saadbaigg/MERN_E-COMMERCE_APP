@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import Product from "../../components/Product/Product";
+import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
 import { listProducts } from "../../redux/actions/productActions";
 import styles from "./HomeScreen.module.css";
 
@@ -16,9 +17,15 @@ const HomeScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listProducts(keyword));
   }, [dispatch]);
-
   return (
     <div className={styles.container}>
+      <div className={styles.carouselContainer}>
+        {loading ? (
+          <Loader width="25px" />
+        ) : (
+          <ProductCarousel images={products.map(item => item.image)} />
+        )}
+      </div>
       <h1>Latest Products</h1>
       <div className={styles.productsContainer}>
         {loading ? (
