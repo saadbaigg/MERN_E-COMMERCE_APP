@@ -13,56 +13,28 @@ const Header = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleSubmit = e => {
-    e.preventDefault()
-
-    if(!keyword.trim()) {
-      history.push('/')
+    if (!keyword.trim()) {
+      history.push("/");
     } else {
-      history.push(`/search/${keyword}`)
+      history.push(`/search/${keyword}`);
     }
 
-    setIsOpen(false)
-  }
+  };
 
   return (
     <header className={styles.container}>
-      <div className={styles.leftContainer}>
-        <Link to="/">
-          <h4>eSHOP</h4>
-        </Link>
-      </div>
-      <div className={styles.rightContainer}>
-        <SearchBar isOpen={isOpen} keyword={keyword} setKeyword={setKeyword} onSubmit={handleSubmit} />
-        { !isOpen && <i className={styles.searchIcon + " fas fa-search"} onClick={() => setIsOpen(true)}></i>}
-        <Link to="/cart">
-          <p>cart</p>
-        </Link>
-        {userInfo && userInfo.isAdmin ? (
-          <div className={styles.dropdown}>
-            <button className={styles.dropbtn}>
-              Admin <i class="fas fa-sort-down"></i>
-            </button>
-            <div className={styles.dropdownContent}>
-              <Link to="/userslist">Users</Link>
-              <Link to="/admin/productslist">Products</Link>
-              <Link to="/admin/orderslist">Orders</Link>
-            </div>
-          </div>
-        ) : null}
-        {userInfo ? (
-          <Link to="/update-profile">
-            <p>{userInfo.name}</p>
+      <div className={styles.top}>
+        <div className={styles.logoContainer}>
+          <i class="fas fa-shopping-cart"></i>
+          <Link to="/">
+            <p>eSHOP</p>
           </Link>
-        ) : (
-          <Link to="/login">
-            <p>sign in</p>
-          </Link>
-        )}
-        {userInfo ? (
-          <a>
+        </div>
+        <div className={styles.searchContainer}>
+          {userInfo ? (
             <p
               onClick={() => {
                 dispatch(logout());
@@ -70,8 +42,67 @@ const Header = ({ history }) => {
             >
               Logout
             </p>
-          </a>
-        ) : null}
+          ) : (
+            <>
+              <Link to="/login">
+                <p>Login</p>
+              </Link>
+              <Link to="/regiter">
+                <p>Register</p>
+              </Link>
+            </>
+          )}
+          <SearchBar
+            keyword={keyword}
+            setKeyword={setKeyword}
+            onSubmit={handleSubmit}
+          />
+        </div>
+      </div>
+
+      <div className={styles.bottom}>
+        <div className={styles.leftContainer}>
+          <Link to="/">
+            <h4>eSHOP</h4>
+          </Link>
+        </div>
+        <div className={styles.rightContainer}>
+          <Link to="/cart">
+            <p>cart</p>
+          </Link>
+          {userInfo && userInfo.isAdmin ? (
+            <div className={styles.dropdown}>
+              <button className={styles.dropbtn}>
+                Admin <i class="fas fa-sort-down"></i>
+              </button>
+              <div className={styles.dropdownContent}>
+                <Link to="/userslist">Users</Link>
+                <Link to="/admin/productslist">Products</Link>
+                <Link to="/admin/orderslist">Orders</Link>
+              </div>
+            </div>
+          ) : null}
+          {userInfo ? (
+            <Link to="/update-profile">
+              <p>{userInfo.name}</p>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <p>sign in</p>
+            </Link>
+          )}
+          {userInfo ? (
+            <a>
+              <p
+                onClick={() => {
+                  dispatch(logout());
+                }}
+              >
+                Logout
+              </p>
+            </a>
+          ) : null}
+        </div>
       </div>
     </header>
   );

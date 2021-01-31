@@ -1,26 +1,18 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 
-const SearchBar = ({ isOpen, history, keyword, setKeyword, onSubmit }) => {
-
+const SearchBar = ({ history, keyword, setKeyword, onSubmit }) => {
   return (
-    <div
-      className={styles.container}
-      style={
-        isOpen
-          ? { visibility: "visible", opacity: "1" }
-          : { visibility: "hidden", opacity: "0" }
-      }
-    >
+    <div className={styles.container}>
       <input
         type="text"
         name="search"
         autoComplete="off"
-        placeholder="Search Product"
+        placeholder="Search"
         value={keyword}
-        onChange={e => setKeyword(e.target.value)}
+        onChange={(e) => setKeyword(e.target.value)}
       />
-      <button onClick={onSubmit}>Search</button>
+      <i class="fas fa-search" onClick={onSubmit}></i>
     </div>
   );
 };

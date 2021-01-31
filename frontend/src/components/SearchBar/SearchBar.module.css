@@ -4,27 +4,23 @@
     justify-content: space-around;
     transition: all 5s ease-in-out;
     transition: opacity 500ms;
+    border: 1px solid #3232327c;
+    padding: 6px 10px;
 }
 .container>input {
-    padding: 4px 5px;
     border-radius: 3px;
     outline: none;
     border: none;
     background: transparent;
-    color: #ffffff9a;
-    border-bottom: 1px solid #ffffff9a;
-    width: 200px;
-}
-.container>button {
-    border-radius: 3px;
-    padding: 6px 10px;
-    background: #ffffff;
-    border: none;
+    font-size: 16px;
     color: var(--primary-color);
-    text-transform: uppercase;
+}
+.container>input::placeholder {
+    color: var(--primary-color);
+}
+.container>i {
+    color: var(--primary-color);
     cursor: pointer;
-    font-size: 10px;
-    font-weight: bold;
-    margin-left: 5px;
+    font-size: 16px;
     outline: none;
 }

@@ -1,4 +1,35 @@
 .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  padding: 30px 220px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logoContainer {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+}
+.logoContainer i {
+  font-size: 24px;
+}
+.logoContainer a p {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: lighter;
+  margin-left: 10px;
+}
+.searchContainer {
+  /* border: 1px solid black; */
+}
+
+
+
+.bottom {
   padding: 20px 220px;
   background-color: var(--primary-color);
   display: flex;
