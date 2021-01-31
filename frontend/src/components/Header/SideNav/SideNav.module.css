@@ -5,6 +5,7 @@
     z-index: 2;
     background: var(--primary-color);
     transition: width 700ms ease-in-out;
+    padding-top: 20px;
 }
 .container hr {
     border: 1px solid #ffffff2a;
