@@ -1,0 +1,41 @@
+.container {
+    position: fixed;
+    right: 0px;
+    height: 100vh;
+    z-index: 2;
+    background: var(--primary-color);
+    transition: width 700ms ease-in-out;
+}
+.container hr {
+    border: 1px solid #ffffff2a;
+}
+.rowWrapper {
+    display: flex;
+    flex-direction: column;
+}
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+    margin: 35px 10px;
+}
+.dropdown {
+    color: #ffffff;
+    margin: -25px 0px 15px 35px;
+    overflow: hidden;
+    transition: height 700ms ease-in-out;
+}
+.dropdown p {
+    margin: 8px 0px;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+.left {
+    display: flex;
+    align-items: center;
+}
+.left p {
+    margin-left: 5px;
+    text-transform: capitalize;
+}

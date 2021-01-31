@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/userActions";
 import styles from "./Header.module.css";
 import SearchBar from "../SearchBar/SearchBar";
+import SideNav from "./SideNav/SideNav";
 
 const Header = ({ history }) => {
   const dispatch = useDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const [keyword, setKeyword] = useState("");
 
@@ -25,6 +28,7 @@ const Header = ({ history }) => {
 
   return (
     <header className={styles.container}>
+      <SideNav isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={styles.top}>
         <div className={styles.logoContainer}>
           <i class="fas fa-shopping-cart"></i>
@@ -86,7 +90,10 @@ const Header = ({ history }) => {
               setKeyword={setKeyword}
               onSubmit={handleSubmit}
             />
-            <i className={styles.menu + " fas fa-bars"}></i>
+            <i
+              className={styles.menu + " fas fa-bars"}
+              onClick={() => setIsOpen(true)}
+            ></i>
           </div>
         </div>
       </div>
