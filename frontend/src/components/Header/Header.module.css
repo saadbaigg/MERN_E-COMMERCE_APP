@@ -34,6 +34,13 @@
   display: flex;
   margin-bottom: 10px;
 }
+.searchContainer .search {
+  display: flex;
+  align-items: center;
+}
+.menu {
+  display: none;
+}
 .searchContainer .login p {
   color: var(--primary-color);
   font-size: 16px;
@@ -93,8 +100,6 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-
 .bottom {
   padding: 20px 220px;
   background-color: var(--primary-color);
@@ -112,4 +117,30 @@
   color: #ffffff;
   font-size: 14px;
   margin-left: 60px;
+}
+
+@media screen and (max-width: 767px) {
+  .bottom {
+    display: none;
+  }
+  .searchContainer .login {
+    display: none;
+  }
+  .top {
+    justify-content: space-between;
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+  }
+  .menu {
+    display: block;
+    margin-left: 8px;
+  }
+  .logoContainer i {
+    font-size: 16px;
+  }
+  .logoContainer a p {
+    font-size: 16px;
+    margin-left: 5px;
+  }
 }

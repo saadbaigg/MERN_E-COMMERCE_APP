@@ -80,11 +80,14 @@ const Header = ({ history }) => {
               </>
             )}
           </div>
-          <SearchBar
-            keyword={keyword}
-            setKeyword={setKeyword}
-            onSubmit={handleSubmit}
-          />
+          <div className={styles.search}>
+            <SearchBar
+              keyword={keyword}
+              setKeyword={setKeyword}
+              onSubmit={handleSubmit}
+            />
+            <i className={styles.menu + " fas fa-bars"}></i>
+          </div>
         </div>
       </div>
 
