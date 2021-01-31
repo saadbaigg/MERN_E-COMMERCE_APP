@@ -55,32 +55,10 @@
   color: var(--primary-color);
 }
 
-
-
-.bottom {
-  padding: 20px 220px;
-  background-color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.rightContainer {
-  display: flex;
-  align-items: center;
-}
 .container h4 {
   color: #ffffff;
   cursor: pointer;
   letter-spacing: 2px;
-}
-.searchIcon {
-  color: #ffffff9a;
-  font-size: 14px;  
-  cursor: pointer;
-  margin-left: 15px;
-}
-.searchIcon:hover {
-  color: #ffffff;
 }
 .dropbtn {
   text-transform: uppercase;
@@ -114,4 +92,24 @@
 }
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+
+.bottom {
+  padding: 20px 220px;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bottom a:nth-child(1) {
+  margin-left: 0px;
+}
+.bottom h4 {
+  text-transform: uppercase;
+}
+.bottom a {
+  color: #ffffff;
+  font-size: 14px;
+  margin-left: 60px;
 }

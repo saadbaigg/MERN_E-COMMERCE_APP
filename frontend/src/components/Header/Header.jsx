@@ -89,9 +89,18 @@ const Header = ({ history }) => {
       </div>
 
       <div className={styles.bottom}>
-        {/* <Link to="/cart">
-            <p>cart</p>
-          </Link> */}
+        <Link to="/">
+          <h4>Home</h4>
+        </Link>
+        <Link to="/">
+          <h4>Shop</h4>
+        </Link>
+        <Link to="/cart">
+          <h4>Cart</h4>
+        </Link>
+        <Link to="/">
+          <h4>About</h4>
+        </Link>
       </div>
     </header>
   );
