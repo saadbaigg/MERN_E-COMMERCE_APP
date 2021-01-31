@@ -21,4 +21,9 @@
   align-items: center;
 }
 
-@media screen and (max-width: 767px) {}
+@media screen and (max-width: 767px) {
+  .container h1 {
+    margin: 50px 10px 10px 10px;
+    font-size: 26px;
+  }
+}

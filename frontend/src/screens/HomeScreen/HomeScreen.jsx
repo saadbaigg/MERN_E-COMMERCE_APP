@@ -20,13 +20,10 @@ const HomeScreen = ({ match }) => {
   return (
     <div className={styles.container}>
       <div className={styles.carouselContainer}>
-        {loading ? (
-          <Loader width="25px" />
-        ) : (
-          <ProductCarousel images={products.map(item => item.image)} />
+        {loading ? null : (
+          <ProductCarousel images={products.map((item) => item.image)} />
         )}
       </div>
-      <h1>Latest Products</h1>
       <div className={styles.productsContainer}>
         {loading ? (
           <div className={styles.loaderContainer}>
@@ -35,16 +32,19 @@ const HomeScreen = ({ match }) => {
         ) : error ? (
           <Message text="some error" />
         ) : (
-          products.map((item) => (
-            <Product
-              id={item._id}
-              img={item.image}
-              name={item.name}
-              rating={item.rating}
-              numReviews={item.numReviews}
-              price={item.price}
-            />
-          ))
+          <>
+            <h1>Top Rated Products</h1>
+            {products.map((item) => (
+              <Product
+                id={item._id}
+                img={item.image}
+                name={item.name}
+                rating={item.rating}
+                numReviews={item.numReviews}
+                price={item.price}
+              />
+            ))}
+          </>
         )}
       </div>
     </div>
