@@ -1,5 +1,9 @@
 .main {
-    padding: 0px 220px;
-    /* min-height: 100vh; */
-    height: 100%;
+  padding: 0px 220px;
+  height: 100%;
+}
+@media screen and (max-width: 767px) {
+  .main {
+    padding: 0px 10px;
+  }
 }

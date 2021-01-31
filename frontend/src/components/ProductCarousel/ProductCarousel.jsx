@@ -17,8 +17,8 @@ const ProductCarousel = ({ images }) => {
       dynamicHeight={true}
     >
       {images.map((image) => (
-        <div style={{ height: "520px", display: "flex", justifyContent: 'center', background: '#ffffff' }}>
-          <img src={image} style={{ width: '80%' }} />
+        <div className={styles.div}>
+          <img src={image} className={styles.img} />
         </div>
       ))}
     </Carousel>
