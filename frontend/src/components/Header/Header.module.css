@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
 }
-
+.container p {
+  text-transform: uppercase;
+  cursor: pointer;
+}
 .top {
   padding: 30px 220px;
   display: flex;
@@ -12,7 +15,6 @@
 .logoContainer {
   display: flex;
   align-items: center;
-  border: 1px solid black;
 }
 .logoContainer i {
   font-size: 24px;
@@ -24,7 +26,33 @@
   margin-left: 10px;
 }
 .searchContainer {
-  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.searchContainer .login {
+  display: flex;
+  margin-bottom: 10px;
+}
+.searchContainer .login p {
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 700;
+  margin-left: 6px;  
+}
+.searchContainer .login a {
+  display: flex;
+}
+.searchContainer .login a p {
+  display: flex;
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.icon {
+  margin-left: 14px;
+  color: var(--primary-color);
 }
 
 
@@ -54,29 +82,19 @@
 .searchIcon:hover {
   color: #ffffff;
 }
-.container p {
-  text-transform: uppercase;
-  color: #ffffff9a;
-  cursor: pointer;
-  font-size: 14px;
-  align-self: flex-end;
-  margin-left: 30px;
-}
-.container p:hover {
-  color: #ffffff;
-}
 .dropbtn {
   text-transform: uppercase;
-  color: #ffffff9a;
+  color: var(--primary-color);
   cursor: pointer;
-  font-size: 14px;
   border: none;
   background: none;
+  font-size: 16px;
+  font-weight: 700;
+  margin-left: 6px;
 }
 .dropdown {
   position: relative;
   display: inline-block;
-  margin-left: 30px;
 }
 .dropdownContent {
   display: none;

@@ -21,7 +21,6 @@ const Header = ({ history }) => {
     } else {
       history.push(`/search/${keyword}`);
     }
-
   };
 
   return (
@@ -34,24 +33,53 @@ const Header = ({ history }) => {
           </Link>
         </div>
         <div className={styles.searchContainer}>
-          {userInfo ? (
-            <p
-              onClick={() => {
-                dispatch(logout());
-              }}
-            >
-              Logout
-            </p>
-          ) : (
-            <>
-              <Link to="/login">
-                <p>Login</p>
-              </Link>
-              <Link to="/regiter">
-                <p>Register</p>
-              </Link>
-            </>
-          )}
+          <div className={styles.login}>
+            {userInfo && userInfo.isAdmin ? (
+              <div className={styles.dropdown}>
+                <i className={styles.icon + " fas fa-user-shield"}></i>
+                <button className={styles.dropbtn}>
+                  Admin <i className="fas fa-sort-down"></i>
+                </button>
+                <div className={styles.dropdownContent}>
+                  <Link to="/userslist">Users</Link>
+                  <Link to="/admin/productslist">Products</Link>
+                  <Link to="/admin/orderslist">Orders</Link>
+                </div>
+              </div>
+            ) : null}
+
+            {userInfo ? (
+              <>
+                <div className={styles.dropdown}>
+                  <i className={styles.icon + " fas fa-user"}></i>
+                  <button className={styles.dropbtn}>
+                    {userInfo.name} <i className="fas fa-sort-down"></i>
+                  </button>
+                  <div className={styles.dropdownContent}>
+                    <Link to="/update-profile">Update Profile</Link>
+                  </div>
+                </div>
+                <i className={styles.icon + " fas fa-user-lock"}></i>
+                <p
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
+                  Logout
+                </p>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <p>Login</p>
+                </Link>
+                <p>/</p>
+                <Link to="/register">
+                  <p>Register</p>
+                </Link>
+              </>
+            )}
+          </div>
           <SearchBar
             keyword={keyword}
             setKeyword={setKeyword}
@@ -61,48 +89,9 @@ const Header = ({ history }) => {
       </div>
 
       <div className={styles.bottom}>
-        <div className={styles.leftContainer}>
-          <Link to="/">
-            <h4>eSHOP</h4>
-          </Link>
-        </div>
-        <div className={styles.rightContainer}>
-          <Link to="/cart">
+        {/* <Link to="/cart">
             <p>cart</p>
-          </Link>
-          {userInfo && userInfo.isAdmin ? (
-            <div className={styles.dropdown}>
-              <button className={styles.dropbtn}>
-                Admin <i class="fas fa-sort-down"></i>
-              </button>
-              <div className={styles.dropdownContent}>
-                <Link to="/userslist">Users</Link>
-                <Link to="/admin/productslist">Products</Link>
-                <Link to="/admin/orderslist">Orders</Link>
-              </div>
-            </div>
-          ) : null}
-          {userInfo ? (
-            <Link to="/update-profile">
-              <p>{userInfo.name}</p>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <p>sign in</p>
-            </Link>
-          )}
-          {userInfo ? (
-            <a>
-              <p
-                onClick={() => {
-                  dispatch(logout());
-                }}
-              >
-                Logout
-              </p>
-            </a>
-          ) : null}
-        </div>
+          </Link> */}
       </div>
     </header>
   );
