@@ -15,10 +15,11 @@ import UserListScreen from "./screens/UserListScreen/UserListScreen";
 import EditUserScreen from "./screens/EditUserScreen/EditUserScreen";
 import ProductsListScreen from "./screens/ProductsListScreen/ProductsListScreen";
 import EditProductScreen from "./screens/EditProductScreen/EditProductScreen";
+import OrdersListScreen from "./screens/OrdersListScreen/OrdersListScreen";
+import SearchScreen from "./screens/SearchScreen/SearchScreen";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styles from "./App.module.css";
-import OrdersListScreen from "./screens/OrdersListScreen/OrdersListScreen";
 
 const App = ({ history }) => {
   return (
@@ -42,7 +43,7 @@ const App = ({ history }) => {
         <Route path="/place-order" component={PlaceOrderScreen} />
         <Route path="/update-profile" component={UpdateProfileScreen} />
         <Route path="/orders/:id" component={OrderDetails} />
-        <Route path="/search/:keyword" component={HomeScreen} />
+        <Route path="/search/:keyword" component={SearchScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
       <Footer />

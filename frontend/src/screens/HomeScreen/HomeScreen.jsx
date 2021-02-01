@@ -34,16 +34,20 @@ const HomeScreen = ({ match }) => {
         ) : (
           <>
             <h1>Top Rated Products</h1>
-            {products.map((item) => (
-              <Product
-                id={item._id}
-                img={item.image}
-                name={item.name}
-                rating={item.rating}
-                numReviews={item.numReviews}
-                price={item.price}
-              />
-            ))}
+            <div className={styles.productList}>
+              {products.map((item) =>
+                item.rating > 3 ? (
+                  <Product
+                    id={item._id}
+                    img={item.image}
+                    name={item.name}
+                    rating={item.rating}
+                    numReviews={item.numReviews}
+                    price={item.price}
+                  />
+                ) : null
+              )}
+            </div>
           </>
         )}
       </div>

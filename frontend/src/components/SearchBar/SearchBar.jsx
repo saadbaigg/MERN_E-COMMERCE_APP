@@ -12,7 +12,7 @@ const SearchBar = ({ history, keyword, setKeyword, onSubmit }) => {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <i class="fas fa-search" onClick={onSubmit}></i>
+      <i class="fas fa-search" onClick={e => onSubmit(e)}></i>
     </div>
   );
 };
