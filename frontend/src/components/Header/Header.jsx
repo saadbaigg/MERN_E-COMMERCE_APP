@@ -102,7 +102,7 @@ const Header = ({ history }) => {
         <Link to="/">
           <h4>Home</h4>
         </Link>
-        <Link to="/">
+        <Link to="/shop">
           <h4>Shop</h4>
         </Link>
         <Link to="/cart">

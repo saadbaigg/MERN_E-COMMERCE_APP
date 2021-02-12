@@ -17,6 +17,7 @@ import ProductsListScreen from "./screens/ProductsListScreen/ProductsListScreen"
 import EditProductScreen from "./screens/EditProductScreen/EditProductScreen";
 import OrdersListScreen from "./screens/OrdersListScreen/OrdersListScreen";
 import SearchScreen from "./screens/SearchScreen/SearchScreen";
+import ShopScreen from "./screens/ShopScreen/ShopScreen";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styles from "./App.module.css";
@@ -44,6 +45,7 @@ const App = ({ history }) => {
         <Route path="/update-profile" component={UpdateProfileScreen} />
         <Route path="/orders/:id" component={OrderDetails} />
         <Route path="/search/:keyword" component={SearchScreen} />
+        <Route path="/shop" component={ShopScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
       <Footer />
