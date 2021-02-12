@@ -1,0 +1,16 @@
+.container {}
+.productsContainer {}
+.productsContainer h1 {
+    margin: 20px 0px;
+}
+.productList {
+    margin: -10px -10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 767px) {
+    .productsContainer h1 {
+      margin: 50px 0px 20px 0px;
+      font-size: 26px;
+    }
+  }
