@@ -41,6 +41,7 @@ const ProductScreen = ({ history, match }) => {
     numReviews,
     countInStock,
     reviews,
+    category,
   } = product;
 
   var arr = [];
@@ -66,7 +67,7 @@ const ProductScreen = ({ history, match }) => {
   const submitReview = (e) => {
     e.preventDefault();
     dispatch(addProductReview(match.params.id, productRating, productComment));
-    setIsOpen(false)
+    setIsOpen(false);
   };
 
   return (
@@ -84,46 +85,39 @@ const ProductScreen = ({ history, match }) => {
             <img src={image} alt={name} />
           </div>
           <div className={styles.textContainer}>
+            <p className={styles.badge}>{category}</p>
             <h1>{name}</h1>
-            <hr />
+            <p className={styles.price}>${price}</p>
+            <p className={styles.description}>{description}</p>
             <div className={styles.ratingContainer}>
               <Rating value={rating} text={`${numReviews} reviews`} />
+              <span className={styles.separator}>|</span>
+              <div className={styles.status}>
+                <p>Status:</p>
+                <p>{countInStock > 0 ? "In Stock" : "Out of Stock"}</p>
+              </div>
             </div>
-            <hr />
-            <p className={styles.price}>Price: ${price}</p>
-            <hr />
-            <p className={styles.description}>{description}</p>
-          </div>
-          <div className={styles.finalContainer}>
-            <span>
-              <p>Price:</p>
-              <p>${price}</p>
-            </span>
-            <span>
-              <p>Status:</p>
-              <p>{countInStock > 0 ? "In Stock" : "Out of Stock"}</p>
-            </span>
-            {countInStock > 0 && (
-              <span>
-                <p>Qty</p>
-                <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                  {arr.map((i) => (
-                    <option value={i}>{i}</option>
-                  ))}
-                </select>
-              </span>
-            )}
-            <span>
+            <div className={styles.btnContainer}>
+              {countInStock > 0 && (
+                <span>
+                  <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                    {arr.map((i) => (
+                      <option value={i}>{i}</option>
+                    ))}
+                  </select>
+                </span>
+              )}
               <button
                 onClick={handleCartSubmitHandler}
                 disabled={countInStock <= 0}
               >
                 Add to cart
               </button>
-            </span>
+            </div>
           </div>
         </div>
       )}
+      <hr className={styles.sep} />
       <div className={styles.reviewSection}>
         <div className={styles.reviewSectionTop}>
           <h2>Product Reviews</h2>

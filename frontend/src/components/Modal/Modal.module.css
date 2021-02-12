@@ -115,6 +115,10 @@
     width: 70%;
   }
   .popup {
-    width: 70%;
+    width: 80%;
+  }
+  .selectDropdown,
+  .selectDropdown * {
+    width: 100%;
   }
 }

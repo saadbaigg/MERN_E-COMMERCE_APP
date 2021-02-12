@@ -10,9 +10,9 @@ const ShopScreenBar = () => {
         <i className={styles.downIcon + " fas fa-angle-double-down"}></i>
         <div className={styles.categories}>
           <p>Electronics</p>
-          <p>|</p>
+          <p>/</p>
           <p>Clothing</p>
-          <p>|</p>
+          <p>/</p>
           <p>Food</p>
         </div>
       </div>

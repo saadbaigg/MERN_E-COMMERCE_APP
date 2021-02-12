@@ -16,117 +16,202 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 .imgContainer {
-  flex: 0 1 45%;
+  width: 47%;
 }
 .imgContainer img {
   width: 100%;
   height: 330px;
 }
 .textContainer {
-  flex: 0 1 25%;
+  width: 47%;
   display: flex;
   flex-direction: column;
-  margin: 30px 0px 0px 0px;
+  margin: 0px;
+}
+.badge {
+  background: var(--primary-color);
+  border-radius: 10px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  width: 90px;
+  padding: 3px 0px;
+  margin-bottom: 10px;
 }
 .textContainer h1 {
   color: var(--primary-color);
   text-transform: uppercase;
-  margin-bottom: 25px;
   font-size: 28px;
+  margin-bottom: 10px;
 }
 .ratingContainer {
-  margin: 10px 0px;
-}
-.price {
-  margin: 10px 0px;
-  font-weight: bold;
-}
-.description {
-  margin: 10px 0px;
-  width: 240px;
-  font-size: 15px;
-  line-height: 24px;
-}
-.finalContainer {
-  border: 1px solid rgba(0, 0, 0, 0.192);
-  flex: 0 1 23%;
-}
-.finalContainer > span {
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
 }
-.finalContainer > span:nth-child(1) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+.separator {
+  margin: 0px 20px;
+  color: var(--primary-color);
 }
-
-.finalContainer > span:nth-child(2) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+.status {
+  display: flex;
+  align-items: center;
 }
-.finalContainer > span:nth-child(3) > select {
-  outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.192);
-  background: none;
-  cursor: pointer;
+.status p {
+  margin-right: 10px;
+  font-weight: bold;
 }
-.finalContainer > span:nth-child(4) {
-  place-content: center;
+.price {
+  margin: 0px;
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
 }
-
-.finalContainer > span > button {
-  color: #ffffff;
-  background-color: black;
+.description {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+.btnContainer {
+  display: flex;
+  align-items: center;
+}
+.btnContainer select {
+  padding: 10px 40px;
+  margin-right: 10px;
+}
+.btnContainer button {
+  padding: 10px 30px;
+  margin-right: 10px;
   text-transform: uppercase;
-  width: 100%;
-  padding: 10px 0px;
-  font-size: 12px;
-  cursor: pointer;
+  background: var(--primary-color);
   border: none;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .reviewSection {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
 .reviewSection hr {
-    margin: 15px 0px 15px 5px;
+  margin: 15px 0px 15px 5px;
 }
 .reviewSectionTop {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .reviewSectionTop h2 {
-    color: var(--primary-color);
-    text-transform: uppercase;
+  color: var(--primary-color);
+  text-transform: uppercase;
 }
 .reviewSectionTop button {
-    color: #ffffff;
-    background-color: black;
-    text-transform: uppercase;
-    padding: 8px 20px;
-    font-size: 10px;
-    cursor: pointer;
-    border: none;
-    margin-left: 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: all 0.3s ease-out;
+  color: #ffffff;
+  background-color: black;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-out;
 }
 .reviewSection .review {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .reviewSection .review p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .reviewSection .review p:nth-child(1) {
-    font-weight: bold;
-    color: var(--primary-color);
+  font-weight: bold;
+  color: var(--primary-color);
 }
 .reviewSection .review p:nth-child(2) {
-    font-style: italic;
+  font-style: italic;
+}
+.sep {
+  margin: 30px 0px;
+}
+@media screen and (max-width: 767px) {
+  .container hr {
+    border: 1px solid rgba(0, 0, 0, 0.122);
+  }
+  .goBack {
+    margin: 15px 0px;
+  }
+  .subContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .imgContainer {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .imgContainer img {
+    height: 280px;
+  }
+  .textContainer {
+    width: 100%;
+  }
+  .description {
+    margin: 15px 0px 20px 0px;
+  }
+  .separator {
+    margin: 0px 10px;
+  }
+  .btnContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .btnContainer select {
+    padding: 15px;
+    margin: 0px 0px 10px 0px;
+    width: 100%;
+  }
+  .btnContainer span {
+    width: 100%;
+  }
+  .btnContainer button {
+    width: 100%;
+    padding: 15px 30px;
+    margin-right: 0px;
+    text-transform: uppercase;
+    background: var(--primary-color);
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .sep {
+    margin: 15px 0px;
+  }
+  .reviewSection {
+    margin-top: 10px;
+  }
+  .reviewSectionTop {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .reviewSectionTop h2 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .reviewSectionTop button {
+    background-color: var(--primary-color);
+    padding: 12px 20px;
+    width: 100%;
+    margin: 0px;
+  }
 }
