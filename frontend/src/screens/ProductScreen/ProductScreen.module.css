@@ -139,6 +139,9 @@
 .reviewSection .review p:nth-child(2) {
   font-style: italic;
 }
+.reviewSection hr {
+  width: 50%;
+}
 .sep {
   margin: 30px 0px;
 }
